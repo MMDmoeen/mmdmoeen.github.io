@@ -31,6 +31,7 @@ nav .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;margin-inline-start:auto;flex-wrap:wrap}
 nav ul a{display:block;padding:10px 12px;border-radius:8px;text-decoration:none;font-size:15px;color:var(--ink)}
 nav ul a:hover,nav ul a:focus-visible{background:var(--pista);color:var(--deepink);outline:none}
+nav ul a.on{background:var(--deep);color:var(--onbtn)}
 .hero{background:var(--pista);color:var(--ink)}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
 .tag{display:inline-block;background:var(--pista2);color:var(--deepink);font-weight:700;font-size:14px;padding:4px 12px;border-radius:99px;margin-bottom:14px}
@@ -63,6 +64,21 @@ h2{font-size:clamp(28px,3.6vw,40px);line-height:1.2;margin:0 0 10px;text-wrap:ba
 .feat h3{margin:0 0 2px;font-size:17px}
 .feat p{margin:0;color:var(--soft);font-size:15px}
 .lime{background:var(--card)}
+.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
+.pl{position:relative;border:1px solid var(--line);border-radius:16px;padding:22px 18px;background:var(--bg);display:flex;flex-direction:column;gap:10px}
+.pl.best{border:2px solid var(--deep);background:var(--card)}
+.pl .bd{position:absolute;top:-13px;inset-inline-start:16px;background:var(--deep);color:var(--onbtn);font-size:13px;font-weight:700;padding:3px 12px;border-radius:99px}
+.pl h3{margin:0;font-size:19px}
+.pr{margin:0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.pr b{font:800 clamp(30px,3vw,38px)/1 "Inter Tight",sans-serif;color:var(--deepink);white-space:nowrap}
+.pr span{color:var(--soft);font-size:15px}
+.pl ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;flex:1}
+.pl li{padding-inline-start:24px;position:relative;font-size:15px}
+.pl li::before{content:"";position:absolute;inset-inline-start:2px;top:.55em;width:12px;height:7px;border-left:2.5px solid var(--deep);border-bottom:2.5px solid var(--deep);transform:rotate(-45deg)}
+.pl .btn{width:100%}
+.btn.ghost2{border-color:var(--deep);color:var(--deepink);background:transparent}
+.btn.ghost2:hover{background:var(--pista)}
+.note{margin:18px 0 0;color:var(--soft);font-size:14px}
 .proj{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .pc{border-radius:16px;padding:22px;border:1px solid var(--line);background:var(--bg);display:flex;flex-direction:column;gap:8px}
 .pc.on{background:var(--deep);color:#fff;border-color:var(--deep)}
@@ -101,8 +117,8 @@ footer .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap;font-weight:70
 @keyframes slide{0%{transform:translate(0,0);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translate(var(--dx),var(--dy));opacity:0}}
 .fly{animation:slide 3.6s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.fly{animation:none;opacity:0}html{scroll-behavior:auto}}
-@media(max-width:900px){.hero .wrap,.buy{grid-template-columns:minmax(0,1fr)}.fig{min-height:460px}.proj,.steps{grid-template-columns:minmax(0,1fr)}footer .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}footer .wrap>div:first-child{grid-column:1/-1}}
-@media(max-width:600px){.feat{grid-template-columns:minmax(0,1fr)}.facts{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px}.facts b{font-size:17px}nav ul a{padding:8px 9px;font-size:14px}footer .wrap{grid-template-columns:minmax(0,1fr)}.fig{min-height:420px}}
+@media(max-width:900px){.plans{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}.hero .wrap,.buy{grid-template-columns:minmax(0,1fr)}.fig{min-height:460px}.proj,.steps{grid-template-columns:minmax(0,1fr)}footer .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}footer .wrap>div:first-child{grid-column:1/-1}}
+@media(max-width:600px){.plans{grid-template-columns:minmax(0,1fr)}.feat{grid-template-columns:minmax(0,1fr)}.facts{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px}.facts b{font-size:17px}nav ul a{padding:8px 9px;font-size:14px}footer .wrap{grid-template-columns:minmax(0,1fr)}.fig{min-height:420px}}
 </style>
 </head>
 <body>
@@ -112,7 +128,7 @@ footer .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap;font-weight:70
     <ul>
       <li><a href="#how">كيف بيشتغل</a></li>
       <li><a href="#features">المزايا</a></li>
-      <li><a href="#projects">مشاريعنا</a></li>
+      <li><a href="#pricing">الباقات</a></li>
       <li><a href="#buy">التفعيل</a></li>
       <li><a href="#contact">تواصل</a></li>
     </ul>
@@ -166,27 +182,37 @@ footer .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap;font-weight:70
   </div>
 </section>
 
-<section class="band" id="projects">
+<section class="band" id="pricing">
   <div class="wrap">
-    <h2>مشاريع MMD</h2>
-    <p class="sub">أدوات صغيرة بتحل مشاكل حقيقية بشغلنا اليومي. مَعين أولها، وكل مشروع جديد رح ينزل هون.</p>
-    <div class="proj">
-      <article class="pc on">
-        <span class="st">قيد التطوير</span>
-        <h3>مَعين</h3>
-        <p>حفظ أرقام الزبائن من المحادثات ومن الصور، بالعربي، على أندرويد.</p>
+    <h2>الباقات</h2>
+    <p class="sub">باقة وحدة فيها كل شي، والتمرير التلقائي داخل معها بدون أي إضافة. بتختار بس المدة.</p>
+    <div class="plans">
+      <article class="pl">
+        <h3>تجربة</h3>
+        <p class="pr"><b>مجاناً</b><span></span></p>
+        <ul><li>لحد 20 رقم</li><li>التمرير بإيدك</li><li>قراءة من المحادثات</li></ul>
+        <a class="btn ghost2" href="#buy">نزّل وجرّب</a>
       </article>
-      <article class="pc off">
-        <span class="st">المشروع الجاي</span>
-        <h3>مكان فاضي لمشروعك التاني</h3>
-        <p>لما نطلق مشروع جديد بينضاف هون مع صفحتو ورابط التحميل.</p>
+      <article class="pl">
+        <h3>شهر</h3>
+        <p class="pr"><b>4.99$</b><span>بالشهر</span></p>
+        <ul><li>كل المزايا</li><li>التمرير التلقائي</li><li>أرقام بلا حدود</li></ul>
+        <a class="btn main" href="https://wa.me/905524488532?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A7%D8%B4%D8%AA%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%B4%D9%87%D8%B1%20%D9%84%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D9%85%D9%8E%D8%B9%D9%8A%D9%86">اطلب الكود</a>
       </article>
-      <article class="pc off">
-        <span class="st">فكرة؟</span>
-        <h3>اقترح أداة</h3>
-        <p>عندك شغلة بتتعبك كل يوم بالشغل؟ راسلنا، يمكن تكون مشروعنا الجاي.</p>
+      <article class="pl">
+        <h3>3 أشهر</h3>
+        <p class="pr"><b>12.99$</b><span>كل 3 أشهر</span></p>
+        <ul><li>كل المزايا</li><li>التمرير التلقائي</li><li>أرقام بلا حدود</li></ul>
+        <a class="btn main" href="https://wa.me/905524488532?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A7%D8%B4%D8%AA%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%82%D8%A9%203%20%D8%A3%D8%B4%D9%87%D8%B1%20%D9%84%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D9%85%D9%8E%D8%B9%D9%8A%D9%86">اطلب الكود</a>
+      </article>
+      <article class="pl best">
+        <span class="bd">الأوفر: أرخص من 4 أشهر</span><h3>سنة</h3>
+        <p class="pr"><b>19.99$</b><span>بالسنة</span></p>
+        <ul><li>كل المزايا</li><li>التمرير التلقائي</li><li>أرقام بلا حدود</li></ul>
+        <a class="btn main" href="https://wa.me/905524488532?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A7%D8%B4%D8%AA%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%B3%D9%86%D8%A9%20%D9%84%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D9%85%D9%8E%D8%B9%D9%8A%D9%86">اطلب الكود</a>
       </article>
     </div>
+    <p class="note">الدفع بكود تفعيل بطرق الدفع المحلية. اكبس «اطلب الكود» وبتنفتح محادثة واتساب معنا مباشرة.</p>
   </div>
 </section>
 
@@ -242,7 +268,7 @@ const feats=[
   ['من الصور كمان','بتعطيه سكرين شوت أو صور كتير مع بعض، حتى بالوضع الليلي.','M6 9h28v22H6zM12 25l6-7 5 5 4-4 7 6'],
   ['أسماء عربية بالجملة','بتختار بادئة متل «زبون» أو اسم محلك، وبيرقّم الباقي لحالو.','M10 12h20M10 20h14M10 28h18'],
   ['فلترة حسب البلد','بتحفظ أرقام سوريا بس، أو تركيا، أو كل البلدان.','M20 6a14 14 0 1 0 .1 0zM6 20h28M20 6c-6 8-6 20 0 28M20 6c6 8 6 20 0 28'],
-  ['ما بيكرّر','الرقم المحفوظ أصلاً ما بينحفظ مرة تانية.','M10 20l7 7 13-14'],
+  ['تمرير تلقائي','مَعين بينزل بالمحادثات لحالو وبيلقط الأرقام، وإنت مرتاح.','M20 8v24m-8-8 8 8 8-8'],
   ['تصدير ملفات','Excel أو CSV أو VCF لتنقلهن عالآيفون أو تبعتهن لزميلك.','M20 6v18m-7-7 7 7 7-7M8 30h24']
 ];
 const fl=document.getElementById('featList');
@@ -283,6 +309,12 @@ const f=document.getElementById('codeForm'),inp=document.getElementById('code'),
 inp.addEventListener('input',()=>{let v=inp.value.toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.startsWith('MMD'))v=v.slice(3);v=v.slice(0,12);const parts=v.match(/.{1,4}/g)||[];inp.value=parts.length?'MMD-'+parts.join('-'):'';msg.textContent='';});
 f.addEventListener('submit',e=>{e.preventDefault();const ok=/^MMD-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(inp.value);msg.textContent=ok?'شكل الكود صحيح. التفعيل الفعلي بيصير من جوّا التطبيق.':'الكود لازم يكون بهالشكل: MMD- وبعدها 12 حرف ورقم.';msg.style.color=ok?'#2e9a6a':'#c2412d';});
 document.getElementById('yr').textContent=new Date().getFullYear();
+const links=[...document.querySelectorAll('nav ul a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const mark=()=>{const y=window.scrollY+window.innerHeight*0.35;let cur=null;for(const sec of secs){if(sec.offsetTop<=y)cur=sec;}
+if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4)cur=secs[secs.length-1];
+links.forEach(a=>a.classList.toggle('on',!!cur&&a.getAttribute('href')==='#'+cur.id));};
+window.addEventListener('scroll',mark,{passive:true});window.addEventListener('resize',mark);mark();
 }
 </script>
 </body>
