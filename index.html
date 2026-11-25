@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MMD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter+Tight:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday tools for Arab merchants, confident and plain
+   IDEA a merchant's phone ledger: numbers pulled off a chat screen into a clean contacts book
+   PICTURE a large drawn phone: chat list with unsaved numbers, a floating counter, numbers sliding into a contacts card
+   COLOUR fresh green (own shade, not WhatsApp's exact brand green), pistachio light fields, amber accent
+   TYPE IBM Plex Sans Arabic 700/400, Inter Tight 800 for the MMD mark
+   LAYOUT laptop: picture right (start side in RTL), title and actions beside it; phone: title, picture, buttons */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0e1712);--ink:light-dark(#10241a,#e8f3ec);--soft:light-dark(#4b5f53,#a8bdb0);--deep:light-dark(#138a45,#1fa855);--deepink:light-dark(#0d6a34,#7fd9a2);--pista:light-dark(#eaf7e1,#14251b);--pista2:light-dark(#d3efc0,#1c3324);--lime:light-dark(#eaf7e1,#14251b);--coral:#f5a524;--line:light-dark(#dcebd3,#22362a);--card:light-dark(#f6fbf2,#13201a);--onbtn:light-dark(#ffffff,#05230f)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "IBM Plex Sans Arabic",Tahoma,sans-serif;overflow-x:clip}
+a{color:inherit}
+img,svg{max-width:100%}
+.wrap{max-width:1240px;margin-inline:auto}
+.band{padding-block:clamp(36px,5vw,72px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);color:var(--ink);padding:12px max(5vw,16px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{font:800 24px/1 "Inter Tight",sans-serif;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo{color:var(--deepink)}.logo i{width:12px;height:12px;border-radius:3px;background:var(--deep);display:inline-block}
+nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;margin-inline-start:auto;flex-wrap:wrap}
+nav ul a{display:block;padding:10px 12px;border-radius:8px;text-decoration:none;font-size:15px;color:var(--ink)}
+nav ul a:hover,nav ul a:focus-visible{background:var(--pista);color:var(--deepink);outline:none}
+.hero{background:var(--pista);color:var(--ink)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.tag{display:inline-block;background:var(--pista2);color:var(--deepink);font-weight:700;font-size:14px;padding:4px 12px;border-radius:99px;margin-bottom:14px}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.15;margin:0 0 16px;text-wrap:balance;font-weight:700}
+.lead{font-size:18px;color:var(--soft);margin:0 0 24px;max-width:34em}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:inherit}
+.btn.main{background:var(--deep);color:var(--onbtn)}
+.btn.main:hover{filter:brightness(.92)}
+.btn.ghost{border-color:var(--deep);color:var(--deepink);background:transparent}
+.btn.ghost:hover{background:var(--pista2)}
+.btn:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.motto{font-size:clamp(20px,2.4vw,26px);font-weight:700;color:var(--deepink);margin:28px 0 0;padding-top:20px;border-top:1px solid var(--line)}
+.motto span{display:block;font-size:17px;font-weight:500;color:var(--soft);margin-top:6px}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.facts b{display:block;font-size:20px;color:var(--deepink)}
+.facts span{font-size:14px;color:var(--soft)}
+.fig{position:relative;min-height:520px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%;direction:ltr}
+h2{font-size:clamp(28px,3.6vw,40px);line-height:1.2;margin:0 0 10px;text-wrap:balance}
+.sub{color:var(--soft);margin:0 0 28px;max-width:40em}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.step svg{width:100%;height:120px;display:block;margin-bottom:12px}
+.step h3{margin:0 0 6px;font-size:19px}
+.step p{margin:0;color:var(--soft);font-size:15.5px}
+.feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 40px}
+.feat div{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.feat svg{flex:none;width:40px;height:40px}
+.feat h3{margin:0 0 2px;font-size:17px}
+.feat p{margin:0;color:var(--soft);font-size:15px}
+.lime{background:var(--card)}
+.proj{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.pc{border-radius:16px;padding:22px;border:1px solid var(--line);background:var(--bg);display:flex;flex-direction:column;gap:8px}
+.pc.on{background:var(--deep);color:#fff;border-color:var(--deep)}
+.pc .st{font-size:13px;font-weight:700;align-self:flex-start;padding:2px 10px;border-radius:99px;background:#fff;color:#0d6a34}
+.pc.off .st{background:var(--line);color:var(--soft)}
+.pc h3{margin:4px 0 0;font-size:20px}
+.pc p{margin:0;font-size:15px;color:inherit;opacity:.85}
+.buy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.buy ol{margin:0;padding:0;list-style:none;counter-reset:b}
+.buy li{counter-increment:b;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.buy li::before{content:counter(b);width:44px;height:44px;border-radius:12px;background:var(--deep);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px}
+.buy li b{display:block;font-size:17px}
+.buy li span{color:var(--soft);font-size:15px}
+.code{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.code label{display:block;font-weight:700;margin-bottom:8px}
+.code .row{display:flex;gap:10px;flex-wrap:wrap}
+.code input{flex:1 1 200px;min-height:48px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:500 16px "Inter Tight",monospace;padding:0 14px;direction:ltr;text-align:left;letter-spacing:.06em}
+.code input:focus{outline:none;border-color:var(--deep)}
+.code .btn{background:var(--deep);color:#fff}
+.code p{margin:12px 0 0;font-size:14px;color:var(--soft)}
+#msg{min-height:1.6em;font-weight:500}
+footer{background:light-dark(#0d3b22,#0a1a11);color:#d3efc0}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:28px}
+footer h2{color:#fff;font-size:28px}
+footer h3{color:#a7e08a;font-size:16px;margin:0 0 8px}
+footer p{margin:0 0 6px;font-size:15px}
+.contact{display:flex;flex-direction:column;gap:10px}
+.cbtn{display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 14px;border-radius:12px;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
+.cbtn:hover,.cbtn:focus-visible{background:rgba(255,255,255,.16);outline:none}
+.cbtn svg{width:26px;height:26px;flex:none;color:#a7e08a}
+.cbtn span{display:flex;flex-direction:column;line-height:1.3;font-size:14px;color:#d3efc0}
+.cbtn b{font-size:16px}
+footer .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap;font-weight:700;color:#fff}
+.small{font-size:13px;opacity:.8}
+.copy{border-top:1px solid rgba(255,255,255,.15);margin-top:28px;padding-top:16px;font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@keyframes slide{0%{transform:translate(0,0);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translate(var(--dx),var(--dy));opacity:0}}
+.fly{animation:slide 3.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.fly{animation:none;opacity:0}html{scroll-behavior:auto}}
+@media(max-width:900px){.hero .wrap,.buy{grid-template-columns:minmax(0,1fr)}.fig{min-height:460px}.proj,.steps{grid-template-columns:minmax(0,1fr)}footer .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}footer .wrap>div:first-child{grid-column:1/-1}}
+@media(max-width:600px){.feat{grid-template-columns:minmax(0,1fr)}.facts{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px}.facts b{font-size:17px}nav ul a{padding:8px 9px;font-size:14px}footer .wrap{grid-template-columns:minmax(0,1fr)}.fig{min-height:420px}}
+</style>
+</head>
+<body>
+<nav aria-label="القائمة">
+  <div class="wrap">
+    <a class="logo" href="#top"><i></i>MMD</a>
+    <ul>
+      <li><a href="#how">كيف بيشتغل</a></li>
+      <li><a href="#features">المزايا</a></li>
+      <li><a href="#projects">مشاريعنا</a></li>
+      <li><a href="#buy">التفعيل</a></li>
+      <li><a href="#contact">تواصل</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero band" id="top">
+  <div class="wrap">
+    <div>
+      <h1>مَعين: مساعدك بتنظيم العملاء. احفظ أرقام زبائنك بكبسة وحدة</h1>
+      <p class="lead">بتفتح المحادثات وبتنزل فيها، ومَعين بيلقط كل رقم مو محفوظ وبيحفظو بجهات الاتصال باسم بتختارو، بالعربي.</p>
+      <div class="btns">
+        <a class="btn main" href="#buy">طريقة التفعيل</a>
+        <a class="btn ghost" href="#how">طريقة التشغيل</a>
+      </div>
+      <p class="motto">لكل زبون أثر محفوظ<span>احفظ كل الأرقام دفعة وحدة، لتوصل حالتك لكل زبائنك.</span></p>
+    </div>
+    <div class="fig" aria-label="رسم لموبايل عم يلقط الأرقام من المحادثات ويحفظها"><svg id="phone" role="img"></svg></div>
+  </div>
+</header>
+
+<section class="band" id="how">
+  <div class="wrap">
+    <h2>تلات خطوات وبتخلص</h2>
+    <p class="sub">ما في نسخ ولصق رقم رقم. التطبيق بيقرا الأرقام الظاهرة عالشاشة وإنت عم تنزل بالمحادثات.</p>
+    <div class="steps">
+      <div class="step">
+        <svg viewBox="0 0 240 120" aria-hidden="true"><rect x="70" y="8" width="100" height="104" rx="14" fill="var(--deep)"/><rect x="80" y="22" width="80" height="12" rx="4" fill="#eaf7e1"/><rect x="80" y="42" width="80" height="12" rx="4" fill="#eaf7e1" opacity=".6"/><rect x="80" y="62" width="80" height="12" rx="4" fill="#eaf7e1" opacity=".6"/><circle cx="182" cy="34" r="18" fill="var(--coral)"/><text x="182" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#3a2600">ابدأ</text></svg>
+        <h3>اضغط وابدأ المسح</h3>
+        <p>اسمح للتطبيق مرة وحدة، والباقي علينا.</p>
+      </div>
+      <div class="step">
+        <svg viewBox="0 0 240 120" aria-hidden="true"><rect x="70" y="8" width="100" height="104" rx="14" fill="var(--deep)"/><g fill="var(--coral)"><rect x="80" y="20" width="60" height="9" rx="3"/><rect x="80" y="44" width="70" height="9" rx="3"/><rect x="80" y="68" width="55" height="9" rx="3"/><rect x="80" y="92" width="65" height="9" rx="3"/></g><path d="M196 30v58m-10-12 10 12 10-12" stroke="var(--ink)" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="18" y="40" width="40" height="28" rx="8" fill="#eaf7e1" stroke="var(--deep)" stroke-width="2"/><text x="38" y="59" text-anchor="middle" font-size="15" font-weight="700" fill="#0d6a34">87</text></svg>
+        <h3>انزل بالمحادثات</h3>
+        <p>ومَعين بيبلّش يحفظ الأرقام عندك وإنت عم تنزل.</p>
+      </div>
+      <div class="step">
+        <svg viewBox="0 0 240 120" aria-hidden="true"><rect x="58" y="14" width="124" height="92" rx="12" fill="#eaf7e1" stroke="var(--deep)" stroke-width="2"/><circle cx="160" cy="38" r="10" fill="var(--deep)"/><rect x="72" y="32" width="68" height="10" rx="3" fill="var(--deep)"/><circle cx="160" cy="62" r="10" fill="var(--deep)"/><rect x="72" y="56" width="68" height="10" rx="3" fill="var(--deep)"/><circle cx="160" cy="86" r="10" fill="var(--deep)"/><rect x="72" y="80" width="68" height="10" rx="3" fill="var(--deep)"/></svg>
+        <h3>احفظ بالجملة</h3>
+        <p>بتشيل الأرقام يلي ما بدك ياها، وبتحفظ الباقي بكبسة وحدة.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band lime" id="features">
+  <div class="wrap">
+    <h2>معمول للتاجر العربي</h2>
+    <p class="sub">هي المزايا يلي عم نشتغل عليها بالنسخة الأولى.</p>
+    <div class="feat" id="featList"></div>
+  </div>
+</section>
+
+<section class="band" id="projects">
+  <div class="wrap">
+    <h2>مشاريع MMD</h2>
+    <p class="sub">أدوات صغيرة بتحل مشاكل حقيقية بشغلنا اليومي. مَعين أولها، وكل مشروع جديد رح ينزل هون.</p>
+    <div class="proj">
+      <article class="pc on">
+        <span class="st">قيد التطوير</span>
+        <h3>مَعين</h3>
+        <p>حفظ أرقام الزبائن من المحادثات ومن الصور، بالعربي، على أندرويد.</p>
+      </article>
+      <article class="pc off">
+        <span class="st">المشروع الجاي</span>
+        <h3>مكان فاضي لمشروعك التاني</h3>
+        <p>لما نطلق مشروع جديد بينضاف هون مع صفحتو ورابط التحميل.</p>
+      </article>
+      <article class="pc off">
+        <span class="st">فكرة؟</span>
+        <h3>اقترح أداة</h3>
+        <p>عندك شغلة بتتعبك كل يوم بالشغل؟ راسلنا، يمكن تكون مشروعنا الجاي.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band lime" id="buy">
+  <div class="wrap buy">
+    <div>
+      <h2>التفعيل بكود، متل ما بتشحن رصيد</h2>
+      <p class="sub">ما بتحتاج بطاقة بنكية ولا متجر Google Play.</p>
+      <ol>
+        <li><div><b>نزّل التطبيق من هالموقع</b><span>ملف APK مباشر، بيتحدّث من جوّا التطبيق.</span></div></li>
+        <li><div><b>اشتري كود التفعيل</b><span>من عنا مباشرة أو من وكلائنا، بطرق الدفع المحلية.</span></div></li>
+        <li><div><b>دخّل الكود بالتطبيق</b><span>وبتتفعّل كل المزايا فوراً.</span></div></li>
+      </ol>
+    </div>
+    <form class="code" id="codeForm" novalidate>
+      <label for="code">جرّب شكل كود التفعيل</label>
+      <div class="row">
+        <input id="code" name="code" inputmode="latin" autocomplete="off" maxlength="19" placeholder="MMD-XXXX-XXXX-XXXX" aria-describedby="msg">
+        <button class="btn" type="submit">تحقّق</button>
+      </div>
+      <p id="msg" role="status"></p>
+      <p>هاد مثال بس على شكل الكود، والتفعيل الحقيقي بيصير من جوّا التطبيق لما ينطلق.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="band" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>خلّينا نحكي</h2>
+      <p>بدك تكون من أول المجرّبين لمَعين، أو تصير وكيل بيع أكواد؟ راسلنا.</p>
+    </div>
+    <div>
+      <h3>تواصل مباشر</h3>
+      <div class="contact">
+        <a class="cbtn wa" href="https://wa.me/905524488532"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.4 19z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>واتساب<b class="num">+90 552 448 85 32</b></span></a>
+        <a class="cbtn tg" href="https://t.me/MMD_IT_11"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 3 11l6 2 2 6 3-4 5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>تلغرام<b class="num">@MMD_IT_11</b></span></a>
+      </div>
+    </div>
+    <div>
+      <h3>الموقع</h3>
+      <p>سوريا</p>
+      <p class="small">منبيع داخل سوريا وخارجها بأكواد تفعيل.</p>
+    </div>
+  </div>
+  <div class="wrap copy"><span>© <span id="yr">2026</span> MMD</span><span>مَعين مشروع مستقل وما إلو علاقة بأي تطبيق مراسلة.</span></div>
+</footer>
+
+<script>
+{
+const feats=[
+  ['قراءة من المحادثات','بيلقط الأرقام من قائمة المحادثات ومن الغروبات، بالتطبيق العادي ونسخة الأعمال.','M8 10h24v16H16l-8 6z'],
+  ['من الصور كمان','بتعطيه سكرين شوت أو صور كتير مع بعض، حتى بالوضع الليلي.','M6 9h28v22H6zM12 25l6-7 5 5 4-4 7 6'],
+  ['أسماء عربية بالجملة','بتختار بادئة متل «زبون» أو اسم محلك، وبيرقّم الباقي لحالو.','M10 12h20M10 20h14M10 28h18'],
+  ['فلترة حسب البلد','بتحفظ أرقام سوريا بس، أو تركيا، أو كل البلدان.','M20 6a14 14 0 1 0 .1 0zM6 20h28M20 6c-6 8-6 20 0 28M20 6c6 8 6 20 0 28'],
+  ['ما بيكرّر','الرقم المحفوظ أصلاً ما بينحفظ مرة تانية.','M10 20l7 7 13-14'],
+  ['تصدير ملفات','Excel أو CSV أو VCF لتنقلهن عالآيفون أو تبعتهن لزميلك.','M20 6v18m-7-7 7 7 7-7M8 30h24']
+];
+const fl=document.getElementById('featList');
+fl.innerHTML=feats.map(f=>`<div><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="var(--deep)"/><path d="${f[2]}" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><h3>${f[0]}</h3><p>${f[1]}</p></span></div>`).join('');
+
+const rows=[['+963 944 976 443',1],['أبو سامر',0],['+90 534 712 53 62',1],['محل النور',0],['+963 998 196 003',1],['+963 940 731 265',1],['أم خالد',0],['+966 58 234 0946',1]];
+const s=document.getElementById('phone');
+const draw=()=>{
+  const W=s.clientWidth,H=s.clientHeight;if(!W||!H)return;
+  const narrow=W<460;
+  const pw=Math.min(narrow?W*0.62:W*0.5,250),ph=Math.min(H-40,pw*2.05);
+  const px=narrow?(W-pw)*0.62:W*0.56-pw/2,py=(H-ph)/2;
+  const rh=(ph-110)/rows.length;
+  const cw=narrow?Math.min(W*0.42,170):Math.min(W*0.36,190),cx=narrow?8:Math.max(8,px-cw-24),cy=py+ph*0.5;
+  let o=`<defs><linearGradient id="sc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b2a24"/><stop offset="1" stop-color="#061a16"/></linearGradient></defs>`;
+  o+=`<ellipse cx="${px+pw/2}" cy="${py+ph+14}" rx="${pw*0.55}" ry="12" fill="#0d3b22"/>`;
+  o+=`<rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="30" fill="#0d1f1b" stroke="#2e5a50" stroke-width="2"/>`;
+  o+=`<rect x="${px+9}" y="${py+9}" width="${pw-18}" height="${ph-18}" rx="22" fill="url(#sc)"/>`;
+  o+=`<rect x="${px+pw/2-26}" y="${py+16}" width="52" height="8" rx="4" fill="#0d1f1b"/>`;
+  o+=`<text x="${px+pw-24}" y="${py+56}" text-anchor="end" font-size="16" font-weight="700" fill="#eaf7e1">المحادثات</text>`;
+  rows.forEach((r,i)=>{
+    const y=py+76+i*rh;
+    o+=`<circle cx="${px+pw-34}" cy="${y+rh/2}" r="${Math.min(13,rh/2-4)}" fill="${r[1]?'#2f4a43':'#3c6b5f'}"/>`;
+    o+=`<text x="${px+pw-54}" y="${y+rh/2+5}" text-anchor="end" font-size="${narrow?12:13.5}" font-weight="500" fill="${r[1]?'#f5a524':'#cfe3da'}">${r[0]}</text>`;
+    o+=`<line x1="${px+22}" x2="${px+pw-22}" y1="${y+rh}" y2="${y+rh}" stroke="#1d3a33"/>`;
+  });
+  o+=`<g><rect x="${px-14}" y="${py+ph*0.3}" width="62" height="52" rx="14" fill="#eaf7e1" stroke="#0d6a34" stroke-width="2"/><text x="${px+17}" y="${py+ph*0.3+24}" text-anchor="middle" font-size="18" font-weight="800" fill="#0d6a34" font-family="Inter Tight,sans-serif">5</text><text x="${px+17}" y="${py+ph*0.3+42}" text-anchor="middle" font-size="12" fill="#0d6a34">رقم</text></g>`;
+  o+=`<rect x="${cx+6}" y="${cy+8}" width="${cw}" height="168" rx="16" fill="#0d3b22"/>`;
+  o+=`<rect x="${cx}" y="${cy}" width="${cw}" height="168" rx="16" fill="#ffffff" stroke="#e6f5c8" stroke-width="2"/>`;
+  o+=`<text x="${cx+cw-14}" y="${cy+28}" text-anchor="end" font-size="14" font-weight="700" fill="#0d6a34">جهات الاتصال</text>`;
+  ['زبون ١','زبون ٢','زبون ٣','زبون ٤'].forEach((n,i)=>{const y=cy+50+i*28;o+=`<circle cx="${cx+cw-24}" cy="${y}" r="9" fill="#0d6a34"/><text x="${cx+cw-40}" y="${y+5}" text-anchor="end" font-size="13" fill="#10201c">${n}</text><path d="M${cx+16} ${y}l4 4 8-8" stroke="#2e9a6a" stroke-width="2.4" fill="none" stroke-linecap="round"/>`});
+  [0,2,4].forEach((ri,k)=>{const y=py+76+ri*rh+rh/2;const sx=px+46;const dx=(cx+cw/2)-sx,dy=(cy-16)-y;o+=`<g class="fly" style="--dx:${dx}px;--dy:${dy}px;animation-delay:${k*1.2}s"><rect x="${sx-34}" y="${y-11}" width="68" height="22" rx="11" fill="#f5a524"/><text x="${sx}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="700" fill="#3a2600">+ حفظ</text></g>`});
+  s.innerHTML=o;
+};
+const ro=new ResizeObserver(draw);ro.observe(s);draw();
+
+const f=document.getElementById('codeForm'),inp=document.getElementById('code'),msg=document.getElementById('msg');
+inp.addEventListener('input',()=>{let v=inp.value.toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.startsWith('MMD'))v=v.slice(3);v=v.slice(0,12);const parts=v.match(/.{1,4}/g)||[];inp.value=parts.length?'MMD-'+parts.join('-'):'';msg.textContent='';});
+f.addEventListener('submit',e=>{e.preventDefault();const ok=/^MMD-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(inp.value);msg.textContent=ok?'شكل الكود صحيح. التفعيل الفعلي بيصير من جوّا التطبيق.':'الكود لازم يكون بهالشكل: MMD- وبعدها 12 حرف ورقم.';msg.style.color=ok?'#2e9a6a':'#c2412d';});
+document.getElementById('yr').textContent=new Date().getFullYear();
+}
+</script>
+</body>
+</html>
