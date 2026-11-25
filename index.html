@@ -47,6 +47,8 @@ nav a.on{color:var(--gi);background:var(--pi)}
 .btn.line{border-color:var(--line);background:var(--bg);color:var(--ink)}
 .btn.line:hover{border-color:var(--g);color:var(--gi)}
 .btn:focus-visible{outline:3px solid var(--am);outline-offset:2px}
+@media (max-width:600px){.btns .btn.dl{flex:1 1 100%}.btns .btn.line{flex:1 1 0}}
+.dlnote{margin:10px 0 0;font-size:14px;color:var(--soft)}
 .btn.sm{min-height:40px;padding:0 16px;font-size:15px}
 .hero{position:relative;overflow:hidden;padding-top:clamp(40px,6vw,80px)}
 .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--line) 1.2px,transparent 1.2px);background-size:22px 22px;mask-image:radial-gradient(70% 60% at 30% 40%,#000 30%,transparent 75%);pointer-events:none}
@@ -209,9 +211,11 @@ footer .brand svg{width:28px;height:28px}
       <h1>مَعين: مساعدك بتنظيم العملاء. <em>احفظ أرقام زبائنك بكبسة وحدة</em></h1>
       <p class="lead">بتفتح المحادثات وبتنزل فيها، ومَعين بيلقط كل رقم مو محفوظ وبيحفظو بجهات الاتصال باسم بتختارو، بالعربي.</p>
       <div class="btns">
-        <a class="btn main" href="#pricing">طريقة التفعيل</a>
+        <a class="btn main dl" href="moeen.apk" download="moeen.apk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>تحميل التطبيق</a>
+        <a class="btn line" href="#pricing">طريقة التفعيل</a>
         <a class="btn line" href="#how">طريقة التشغيل</a>
       </div>
+      <p class="dlnote">لأندرويد · ملف APK · حجمه 7 ميغا تقريباً</p>
       <div class="motto">
         <svg aria-hidden="true"><use href="#logo"/></svg>
         <div><b>لكل زبون أثر محفوظ</b><span>احفظ كل الأرقام دفعة وحدة، لتوصل حالتك لكل زبائنك.</span></div>
@@ -309,7 +313,7 @@ footer .brand svg{width:28px;height:28px}
       <h2>التفعيل بكود، متل ما بتشحن رصيد</h2>
       <p class="sub">ما بتحتاج بطاقة بنكية ولا متجر Google Play.</p>
       <ol>
-        <li><div><b>نزّل التطبيق من هالموقع</b><span>ملف APK مباشر، بيتحدّث من جوّا التطبيق.</span></div></li>
+        <li><div><b>نزّل التطبيق من هالموقع</b><span>ملف APK مباشر من زر «تحميل التطبيق» فوق.</span></div></li>
         <li><div><b>اشتري كود التفعيل</b><span>من عنا مباشرة أو من وكلائنا، بطرق الدفع المحلية.</span></div></li>
         <li><div><b>دخّل الكود بالتطبيق</b><span>وبتتفعّل كل المزايا فوراً.</span></div></li>
       </ol>
@@ -393,7 +397,7 @@ runFeed(document.getElementById('feed2'),document.querySelector('.auto'),false,4
 
 const wa=t=>'https://wa.me/905524488532?text='+encodeURIComponent('مرحبا، بدي اشتري باقة '+t+' لتطبيق مَعين');
 const plans=[
-  {n:'تجربة',p:'مجاناً',per:'',f:['لحد 20 رقم','التمرير بإيدك','قراءة من المحادثات'],b:'',btn:'نزّل وجرّب',href:'#buy',cls:'line'},
+  {n:'تجربة',p:'مجاناً',per:'',f:['لحد 20 رقم','التمرير بإيدك','قراءة من المحادثات'],b:'',btn:'نزّل وجرّب',href:'moeen.apk',cls:'line'},
   {n:'شهر',p:'4.99$',per:'بالشهر',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('الشهر'),cls:'main'},
   {n:'3 أشهر',p:'12.99$',per:'كل 3 أشهر',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('3 أشهر'),cls:'main'},
   {n:'سنة',p:'19.99$',per:'بالسنة',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'الأوفر: أرخص من 4 أشهر',btn:'اطلب الكود',href:wa('السنة'),cls:'main'}
