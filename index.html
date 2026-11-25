@@ -117,7 +117,7 @@ h1 em{font-style:normal;color:var(--g)}
 .auto{flex:0 0 42%;border-radius:16px;background:#0f1d17;overflow:hidden;position:relative;mask-image:linear-gradient(transparent,#000 15%,#000 85%,transparent)}
 .auto .feed{position:absolute;top:0;left:0;right:0}
 .bx.big{min-height:360px}
-.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
 .plan{position:relative;border:1px solid var(--line);border-radius:20px;padding:26px 22px;background:var(--bg);display:flex;flex-direction:column;gap:14px}
 .plan.best{border:2px solid var(--g);background:var(--card);box-shadow:0 24px 50px -30px color-mix(in srgb,var(--g) 60%,transparent)}
 .plan .bd{position:absolute;top:-13px;inset-inline-start:20px;background:var(--g);color:var(--on);font-size:13px;font-weight:600;padding:3px 12px;border-radius:99px}
@@ -174,7 +174,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
 footer .brand{color:#e9f3ed;font-size:17px}
 footer .brand svg{width:28px;height:28px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.bx{transition:none}}
-@media(max-width:960px){.hero .wrap,.buy,.end .wrap{grid-template-columns:minmax(0,1fr)}.stage{order:2}.plans{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:26px}.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.bx.big{grid-column:span 2;grid-row:auto}.trust .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:minmax(0,1fr)}nav{display:none}}
+@media(max-width:960px){.hero .wrap,.buy,.end .wrap{grid-template-columns:minmax(0,1fr)}.stage{order:2}.plans{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:26px}.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.bx.big{grid-column:span 2;grid-row:auto}.trust .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:minmax(0,1fr)}nav{display:none}}
 @media(max-width:600px){.plans,.bento{grid-template-columns:minmax(0,1fr)}.bx.big{grid-column:auto;flex-direction:column}.auto{flex-basis:200px;min-height:200px}.trust .wrap{grid-template-columns:minmax(0,1fr)}.f1{inset-inline-end:0}.f2{inset-inline-start:0}.float{padding:10px 12px}}
 </style>
 </head>
@@ -215,7 +215,7 @@ footer .brand svg{width:28px;height:28px}
         <a class="btn line" href="#pricing">طريقة التفعيل</a>
         <a class="btn line" href="#how">طريقة التشغيل</a>
       </div>
-      <p class="dlnote">لأندرويد · ملف APK · حجمه 7 ميغا تقريباً</p>
+      <p class="dlnote">لأندرويد · ملف APK · حجمه 6 ميغا تقريباً</p>
       <div class="motto">
         <svg aria-hidden="true"><use href="#logo"/></svg>
         <div><b>لكل زبون أثر محفوظ</b><span>احفظ كل الأرقام دفعة وحدة، لتوصل حالتك لكل زبائنك.</span></div>
@@ -397,7 +397,6 @@ runFeed(document.getElementById('feed2'),document.querySelector('.auto'),false,4
 
 const wa=t=>'https://wa.me/905524488532?text='+encodeURIComponent('مرحبا، بدي اشتري باقة '+t+' لتطبيق مَعين');
 const plans=[
-  {n:'تجربة',p:'مجاناً',per:'',f:['لحد 20 رقم','التمرير بإيدك','قراءة من المحادثات'],b:'',btn:'نزّل وجرّب',href:'moeen.apk',cls:'line'},
   {n:'شهر',p:'4.99$',per:'بالشهر',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('الشهر'),cls:'main'},
   {n:'3 أشهر',p:'12.99$',per:'كل 3 أشهر',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('3 أشهر'),cls:'main'},
   {n:'سنة',p:'19.99$',per:'بالسنة',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'الأوفر: أرخص من 4 أشهر',btn:'اطلب الكود',href:wa('السنة'),cls:'main'}
