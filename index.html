@@ -49,6 +49,12 @@ nav a.on{color:var(--gi);background:var(--pi)}
 .btn:focus-visible{outline:3px solid var(--am);outline-offset:2px}
 @media (max-width:600px){.btns .btn.dl{flex:1 1 100%}.btns .btn.line{flex:1 1 0}}
 .dlnote{margin:10px 0 0;font-size:14px;color:var(--soft)}
+.dlnote a{color:var(--gi);font-weight:600}
+.fix{margin-top:22px;border:1.5px solid var(--am);background:color-mix(in srgb,var(--am) 10%,var(--bg));border-radius:20px;padding:22px 24px}
+.fix h3{margin:0 0 4px;font-size:19px}
+.fix>p{margin:0 0 12px;color:var(--soft)}
+.fix ol{margin:0;padding-inline-start:22px;display:grid;gap:6px}
+.fix b{color:var(--ink)}
 .btn.sm{min-height:40px;padding:0 16px;font-size:15px}
 .hero{position:relative;overflow:hidden;padding-top:clamp(40px,6vw,80px)}
 .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--line) 1.2px,transparent 1.2px);background-size:22px 22px;mask-image:radial-gradient(70% 60% at 30% 40%,#000 30%,transparent 75%);pointer-events:none}
@@ -215,7 +221,7 @@ footer .brand svg{width:28px;height:28px}
         <a class="btn line" href="#pricing">طريقة التفعيل</a>
         <a class="btn line" href="#how">طريقة التشغيل</a>
       </div>
-      <p class="dlnote">لأندرويد · ملف APK · حجمه 6 ميغا تقريباً</p>
+      <p class="dlnote">لأندرويد · ملف APK · حجمه 5 ميغا · <a href="#install">طريقة التثبيت</a></p>
       <div class="motto">
         <svg aria-hidden="true"><use href="#logo"/></svg>
         <div><b>لكل زبون أثر محفوظ</b><span>احفظ كل الأرقام دفعة وحدة، لتوصل حالتك لكل زبائنك.</span></div>
@@ -242,6 +248,41 @@ footer .brand svg{width:28px;height:28px}
     <div class="tr"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>واتساب وواتساب الأعمال</div>
     <div class="tr"><svg viewBox="0 0 24 24"><path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/></svg>واجهة عربية كاملة</div>
     <div class="tr"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 9V7a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>تفعيل بكود، بدون بطاقة بنكية</div>
+  </div>
+</section>
+
+<section class="band" id="install">
+  <div class="wrap">
+    <span class="kick">طريقة التثبيت</span>
+    <h2>نزّلو وثبّتو بدقيقة</h2>
+    <p class="sub">مَعين بينزل من هالموقع مباشرة، مو من متجر Play، فأول مرة بيسألك الموبايل كم سؤال.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="no">1</div>
+        <h3>اضغط «تحميل التطبيق»</h3>
+        <p>إذا قلك «قد يكون الملف ضاراً» اضغط «تنزيل على أي حال».</p>
+      </div>
+      <div class="step">
+        <div class="no">2</div>
+        <h3>افتح الملف من الإشعار</h3>
+        <p>إذا طلب إذن «تثبيت تطبيقات غير معروفة» فعّلو للمتصفح وارجع.</p>
+      </div>
+      <div class="step">
+        <div class="no">3</div>
+        <h3>اضغط «تثبيت»</h3>
+        <p>وبعدها افتح مَعين، وبيدلّك خطوة خطوة على الأذونات.</p>
+      </div>
+    </div>
+    <div class="fix">
+      <h3>طلعلك «تم حظر التطبيق لحماية جهازك»؟</h3>
+      <p>هاد فحص تلقائي من Google بيوقف أي تطبيق من برا المتجر بيطلب قراءة الشاشة أو الإشعارات، ومَعين بيحتاجهن ليلقط الأرقام. الحل:</p>
+      <ol>
+        <li>افتح <b>متجر Play</b> واضغط على صورة حسابك فوق.</li>
+        <li>اختار <b>Play Protect</b>، وبعدها <b>⚙️ الإعدادات</b>.</li>
+        <li>طفّي <b>«فحص التطبيقات باستخدام Play Protect»</b>.</li>
+        <li>ارجع ثبّت مَعين، وبعدها رجّع شغّل Play Protect. مَعين بيضل شغّال عادي.</li>
+      </ol>
+    </div>
   </div>
 </section>
 
