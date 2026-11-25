@@ -3,170 +3,265 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MMD</title>
+<title>مَعين | MMD</title>
+<meta name="description" content="مَعين: تطبيق أندرويد عربي بيلقط أرقام الزبائن من المحادثات وبيحفظها بجهات الاتصال بالجملة، مع تمرير تلقائي.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23138A45'/%3E%3Ccircle cx='32' cy='24' r='9' fill='white'/%3E%3Cpath d='M15 50c2-10 9-15 17-15s15 5 17 15' fill='white'/%3E%3Ccircle cx='48' cy='46' r='10' fill='%23F5A524' stroke='%23138A45' stroke-width='3'/%3E%3Cpath d='M43 46l4 4 6-7' stroke='%23138A45' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Inter+Tight:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* VOICE everyday tools for Arab merchants, confident and plain
-   IDEA a merchant's phone ledger: numbers pulled off a chat screen into a clean contacts book
-   PICTURE a large drawn phone: chat list with unsaved numbers, a floating counter, numbers sliding into a contacts card
-   COLOUR fresh green (own shade, not WhatsApp's exact brand green), pistachio light fields, amber accent
-   TYPE IBM Plex Sans Arabic 700/400, Inter Tight 800 for the MMD mark
-   LAYOUT laptop: picture right (start side in RTL), title and actions beside it; phone: title, picture, buttons */
-:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0e1712);--ink:light-dark(#10241a,#e8f3ec);--soft:light-dark(#4b5f53,#a8bdb0);--deep:light-dark(#138a45,#1fa855);--deepink:light-dark(#0d6a34,#7fd9a2);--pista:light-dark(#eaf7e1,#14251b);--pista2:light-dark(#d3efc0,#1c3324);--lime:light-dark(#eaf7e1,#14251b);--coral:#f5a524;--line:light-dark(#dcebd3,#22362a);--card:light-dark(#f6fbf2,#13201a);--onbtn:light-dark(#ffffff,#05230f)}
+/* VOICE confident product page for Arab merchants, calm and exact
+   IDEA a real app on a real phone: the page behaves like the product's own screens
+   PICTURE large phone with a live, scrolling chat list feeding a contacts counter, floating result toasts
+   COLOUR white ground, fresh green #138A45, pistachio fields, amber for found numbers, deep green closing band
+   TYPE Readex Pro for headings, IBM Plex Sans Arabic for text
+   LAYOUT laptop: text start side, phone end side; bento features; phone: title, phone, buttons */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0c1410);--ink:light-dark(#0f1f17,#e9f3ed);--soft:light-dark(#53645a,#a9bcb0);--line:light-dark(#e3ece6,#203029);--g:light-dark(#138a45,#22b35e);--gi:light-dark(#0d6a34,#7fd9a2);--pi:light-dark(#eef8e7,#13221a);--pi2:light-dark(#d9f0c9,#1b3123);--card:light-dark(#f7fbf4,#111c16);--am:#f5a524;--on:light-dark(#ffffff,#05230f);--deep:#0b2e1c}
 :root[data-theme=light]{color-scheme:light}
 :root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "IBM Plex Sans Arabic",Tahoma,sans-serif;overflow-x:clip}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 "IBM Plex Sans Arabic",Tahoma,sans-serif;overflow-x:clip}
+h1,h2,h3,.brand,.price b{font-family:"Readex Pro","IBM Plex Sans Arabic",sans-serif}
 a{color:inherit}
-img,svg{max-width:100%}
-.wrap{max-width:1240px;margin-inline:auto}
-.band{padding-block:clamp(36px,5vw,72px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
-nav{position:sticky;top:0;z-index:5;background:var(--bg);color:var(--ink);padding:12px max(5vw,16px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.logo{font:800 24px/1 "Inter Tight",sans-serif;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:8px}
-.logo{color:var(--deepink)}.logo i{width:12px;height:12px;border-radius:3px;background:var(--deep);display:inline-block}
-nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;margin-inline-start:auto;flex-wrap:wrap}
-nav ul a{display:block;padding:10px 12px;border-radius:8px;text-decoration:none;font-size:15px;color:var(--ink)}
-nav ul a:hover,nav ul a:focus-visible{background:var(--pista);color:var(--deepink);outline:none}
-nav ul a.on{background:var(--deep);color:var(--onbtn)}
-.hero{background:var(--pista);color:var(--ink)}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
-.tag{display:inline-block;background:var(--pista2);color:var(--deepink);font-weight:700;font-size:14px;padding:4px 12px;border-radius:99px;margin-bottom:14px}
-h1{font-size:clamp(34px,5vw,52px);line-height:1.15;margin:0 0 16px;text-wrap:balance;font-weight:700}
-.lead{font-size:18px;color:var(--soft);margin:0 0 24px;max-width:34em}
+.wrap{max-width:1200px;margin-inline:auto}
+.band{padding-block:clamp(48px,7vw,96px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
+h2{font-size:clamp(28px,3.6vw,42px);line-height:1.4;margin:0 0 10px;text-wrap:balance;font-weight:700;letter-spacing:-.01em}
+.sub{color:var(--soft);margin:0 0 36px;max-width:38em;font-size:17px}
+.kick{display:inline-flex;align-items:center;gap:8px;color:var(--gi);font-weight:600;font-size:15px;margin-bottom:10px}
+.kick::before{content:"";width:18px;height:2px;background:var(--g);border-radius:2px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line);padding:10px max(5vw,16px)}
+header .wrap{display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:21px}
+.brand svg{width:36px;height:36px}
+.brand small{font:500 12px "IBM Plex Sans Arabic";color:var(--soft);display:block;line-height:1}
+nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0;margin-inline-start:auto;flex-wrap:wrap}
+nav a{display:block;padding:9px 13px;border-radius:10px;text-decoration:none;font-size:15px;color:var(--soft);transition:.2s}
+nav a:hover,nav a:focus-visible{color:var(--ink);background:var(--pi);outline:none}
+nav a.on{color:var(--gi);background:var(--pi)}
+.hcta{flex:none;margin-inline-start:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:12px;font:600 16px "IBM Plex Sans Arabic";text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s,box-shadow .2s,background .2s}
+.btn svg{width:18px;height:18px}
+.btn.main{background:var(--g);color:var(--on);box-shadow:0 6px 18px -8px color-mix(in srgb,var(--g) 70%,transparent)}
+.btn.main:hover{transform:translateY(-1px);box-shadow:0 10px 24px -10px color-mix(in srgb,var(--g) 80%,transparent)}
+.btn.line{border-color:var(--line);background:var(--bg);color:var(--ink)}
+.btn.line:hover{border-color:var(--g);color:var(--gi)}
+.btn:focus-visible{outline:3px solid var(--am);outline-offset:2px}
+.btn.sm{min-height:40px;padding:0 16px;font-size:15px}
+.hero{position:relative;overflow:hidden;padding-top:clamp(40px,6vw,80px)}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--line) 1.2px,transparent 1.2px);background-size:22px 22px;mask-image:radial-gradient(70% 60% at 30% 40%,#000 30%,transparent 75%);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:99px;background:var(--pi);border:1px solid var(--pi2);font-size:14px;color:var(--gi);font-weight:500;margin-bottom:18px}
+.pill b{background:var(--g);color:var(--on);border-radius:99px;padding:2px 10px;font-size:12.5px}
+h1{font-size:clamp(34px,4.8vw,56px);line-height:1.4;margin:0 0 18px;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--g)}
+.lead{font-size:clamp(17px,1.6vw,19px);color:var(--soft);margin:0 0 28px;max-width:32em}
 .btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:inherit}
-.btn.main{background:var(--deep);color:var(--onbtn)}
-.btn.main:hover{filter:brightness(.92)}
-.btn.ghost{border-color:var(--deep);color:var(--deepink);background:transparent}
-.btn.ghost:hover{background:var(--pista2)}
-.btn:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
-.motto{font-size:clamp(20px,2.4vw,26px);font-weight:700;color:var(--deepink);margin:28px 0 0;padding-top:20px;border-top:1px solid var(--line)}
-.motto span{display:block;font-size:17px;font-weight:500;color:var(--soft);margin-top:6px}
-.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
-.facts b{display:block;font-size:20px;color:var(--deepink)}
-.facts span{font-size:14px;color:var(--soft)}
-.fig{position:relative;min-height:520px}
-.fig>svg{position:absolute;inset:0;width:100%;height:100%;direction:ltr}
-h2{font-size:clamp(28px,3.6vw,40px);line-height:1.2;margin:0 0 10px;text-wrap:balance}
-.sub{color:var(--soft);margin:0 0 28px;max-width:40em}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
-.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
-.step svg{width:100%;height:120px;display:block;margin-bottom:12px}
-.step h3{margin:0 0 6px;font-size:19px}
-.step p{margin:0;color:var(--soft);font-size:15.5px}
-.feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 40px}
-.feat div{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
-.feat svg{flex:none;width:40px;height:40px}
-.feat h3{margin:0 0 2px;font-size:17px}
-.feat p{margin:0;color:var(--soft);font-size:15px}
-.lime{background:var(--card)}
-.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:stretch}
-.pl{position:relative;border:1px solid var(--line);border-radius:16px;padding:22px 18px;background:var(--bg);display:flex;flex-direction:column;gap:10px}
-.pl.best{border:2px solid var(--deep);background:var(--card)}
-.pl .bd{position:absolute;top:-13px;inset-inline-start:16px;background:var(--deep);color:var(--onbtn);font-size:13px;font-weight:700;padding:3px 12px;border-radius:99px}
-.pl h3{margin:0;font-size:19px}
-.pr{margin:0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.pr b{font:800 clamp(30px,3vw,38px)/1 "Inter Tight",sans-serif;color:var(--deepink);white-space:nowrap}
-.pr span{color:var(--soft);font-size:15px}
-.pl ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;flex:1}
-.pl li{padding-inline-start:24px;position:relative;font-size:15px}
-.pl li::before{content:"";position:absolute;inset-inline-start:2px;top:.55em;width:12px;height:7px;border-left:2.5px solid var(--deep);border-bottom:2.5px solid var(--deep);transform:rotate(-45deg)}
-.pl .btn{width:100%}
-.btn.ghost2{border-color:var(--deep);color:var(--deepink);background:transparent}
-.btn.ghost2:hover{background:var(--pista)}
-.note{margin:18px 0 0;color:var(--soft);font-size:14px}
-.proj{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.pc{border-radius:16px;padding:22px;border:1px solid var(--line);background:var(--bg);display:flex;flex-direction:column;gap:8px}
-.pc.on{background:var(--deep);color:#fff;border-color:var(--deep)}
-.pc .st{font-size:13px;font-weight:700;align-self:flex-start;padding:2px 10px;border-radius:99px;background:#fff;color:#0d6a34}
-.pc.off .st{background:var(--line);color:var(--soft)}
-.pc h3{margin:4px 0 0;font-size:20px}
-.pc p{margin:0;font-size:15px;color:inherit;opacity:.85}
-.buy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
-.buy ol{margin:0;padding:0;list-style:none;counter-reset:b}
-.buy li{counter-increment:b;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
-.buy li::before{content:counter(b);width:44px;height:44px;border-radius:12px;background:var(--deep);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px}
+.motto{margin:34px 0 0;padding-top:22px;border-top:1px solid var(--line);display:flex;gap:14px;align-items:flex-start}
+.motto svg{flex:none;width:40px;height:40px}
+.motto b{display:block;font:700 20px "Readex Pro";color:var(--ink)}
+.motto span{color:var(--soft);font-size:15.5px}
+.stage{position:relative;display:flex;justify-content:center;padding:20px 0 30px}
+.glow{position:absolute;width:78%;aspect-ratio:1;border-radius:50%;background:var(--pi2);top:8%;filter:blur(2px)}
+.phone{position:relative;width:min(290px,72vw);aspect-ratio:9/18.6;border-radius:42px;background:#0e1713;padding:11px;box-shadow:0 40px 70px -30px rgba(10,40,25,.55),inset 0 0 0 2px #2a3a33}
+.scr{position:relative;height:100%;border-radius:32px;overflow:hidden;background:#0f1d17;color:#e7f1ec;display:flex;flex-direction:column}
+.isl{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:86px;height:24px;border-radius:20px;background:#050907;z-index:3}
+.bar{padding:44px 16px 10px;display:flex;justify-content:space-between;align-items:center;font:600 15px "Readex Pro";background:#13241c}
+.bar i{width:30px;height:30px;border-radius:9px;background:var(--g);display:grid;place-items:center;font-style:normal;font-size:12px;color:#fff}
+.list{flex:1;overflow:hidden;position:relative;mask-image:linear-gradient(#000 80%,transparent)}
+.feed{will-change:transform}
+.row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid #1b2c24}
+.av{width:34px;height:34px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:13px;font-weight:600;color:#0f1d17}
+.row div{flex:1;line-height:1.35}
+.row b{display:block;font-size:13.5px;font-weight:600;direction:ltr;text-align:right}
+.row b.n{color:var(--am)}
+.row span{font-size:11.5px;color:#8ea79b}
+.row .tick{width:20px;height:20px;border-radius:50%;background:var(--am);color:#3a2600;display:grid;place-items:center;font-size:11px;font-weight:700}
+.row b.sv{color:#7fd9a2}
+.row .ok{width:20px;height:20px;border-radius:50%;background:#138A45;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+.row.flash{background:rgba(127,217,162,.12);transition:background .6s}
+.float{position:absolute;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:12px 14px;box-shadow:0 18px 40px -18px rgba(10,40,25,.35);display:flex;gap:10px;align-items:center;font-size:14px}
+.float b{display:block;font:700 18px "Readex Pro"}
+.float small{color:var(--soft);font-size:12.5px}
+.f1{top:16%;inset-inline-end:-6px}
+.f2{bottom:14%;inset-inline-start:-10px}
+.f1 .ic,.f2 .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;flex:none}
+.f1 .ic{background:var(--pi);color:var(--g)}
+.f2 .ic{background:#fff3dc;color:#a86a00}
+.ic svg{width:20px;height:20px}
+.trust{border-block:1px solid var(--line);background:var(--card)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.tr{display:flex;gap:12px;align-items:center;font-weight:500;font-size:15px}
+.tr svg{width:22px;height:22px;color:var(--g);flex:none}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;position:relative}
+.step{border:1px solid var(--line);border-radius:20px;padding:24px;background:var(--bg);position:relative}
+.step .no{width:40px;height:40px;border-radius:12px;background:var(--g);color:var(--on);display:grid;place-items:center;font:700 18px "Readex Pro";margin-bottom:16px}
+.step h3{margin:0 0 6px;font-size:20px}
+.step p{margin:0;color:var(--soft)}
+.mini{height:132px;border-radius:14px;background:var(--pi);margin-bottom:18px;display:grid;place-items:center;overflow:hidden}
+.mini svg{width:100%;height:100%}
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(170px,auto);gap:18px}
+.bx{border:1px solid var(--line);border-radius:20px;padding:24px;background:var(--bg);display:flex;flex-direction:column;gap:8px;transition:transform .2s,border-color .2s}
+.bx:hover{transform:translateY(-2px);border-color:var(--pi2)}
+.bx h3{margin:0;font-size:19px}
+.bx p{margin:0;color:var(--soft);font-size:15.5px}
+.bx .ic{width:42px;height:42px;border-radius:12px;background:var(--pi);color:var(--g);display:grid;place-items:center;margin-bottom:6px}
+.bx .ic svg{width:22px;height:22px}
+.bx.big{grid-column:span 2;grid-row:span 2;background:var(--deep);color:#e9f3ed;border-color:var(--deep);flex-direction:row;gap:24px;align-items:stretch}
+.bx.big p{color:#b8d4c3}
+.bx.big .ic{background:#163d27;color:#7fd9a2}
+.bx.big .txt{flex:1;display:flex;flex-direction:column;gap:8px;justify-content:center}
+.bx.big .tag{align-self:flex-start;background:var(--am);color:#3a2600;font-size:13px;font-weight:600;padding:3px 12px;border-radius:99px}
+.auto{flex:0 0 42%;border-radius:16px;background:#0f1d17;overflow:hidden;position:relative;mask-image:linear-gradient(transparent,#000 15%,#000 85%,transparent)}
+.auto .feed{position:absolute;top:0;left:0;right:0}
+.bx.big{min-height:360px}
+.plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
+.plan{position:relative;border:1px solid var(--line);border-radius:20px;padding:26px 22px;background:var(--bg);display:flex;flex-direction:column;gap:14px}
+.plan.best{border:2px solid var(--g);background:var(--card);box-shadow:0 24px 50px -30px color-mix(in srgb,var(--g) 60%,transparent)}
+.plan .bd{position:absolute;top:-13px;inset-inline-start:20px;background:var(--g);color:var(--on);font-size:13px;font-weight:600;padding:3px 12px;border-radius:99px}
+.plan h3{margin:0;font-size:18px;color:var(--soft);font-weight:500}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0}
+.price b{font-size:clamp(32px,3.2vw,40px);line-height:1;font-weight:700;white-space:nowrap}
+.price span{color:var(--soft);font-size:14.5px}
+.plan ul{list-style:none;margin:0;padding:14px 0 0;border-top:1px dashed var(--line);display:grid;gap:8px;flex:1}
+.plan li{display:flex;gap:10px;align-items:center;font-size:15px}
+.plan li svg{width:18px;height:18px;color:var(--g);flex:none}
+.plan .btn{width:100%}
+.note{margin:20px 0 0;color:var(--soft);font-size:14.5px;display:flex;gap:8px;align-items:center}
+.note svg{width:18px;height:18px;color:var(--g);flex:none}
+.buy{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:center}
+.buy ol{margin:0;padding:0;list-style:none;counter-reset:b;display:grid;gap:4px}
+.buy li{counter-increment:b;display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.buy li::before{content:counter(b);width:46px;height:46px;border-radius:14px;background:var(--pi);color:var(--gi);display:grid;place-items:center;font:700 19px "Readex Pro"}
 .buy li b{display:block;font-size:17px}
 .buy li span{color:var(--soft);font-size:15px}
-.code{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
-.code label{display:block;font-weight:700;margin-bottom:8px}
-.code .row{display:flex;gap:10px;flex-wrap:wrap}
-.code input{flex:1 1 200px;min-height:48px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:500 16px "Inter Tight",monospace;padding:0 14px;direction:ltr;text-align:left;letter-spacing:.06em}
-.code input:focus{outline:none;border-color:var(--deep)}
-.code .btn{background:var(--deep);color:#fff}
-.code p{margin:12px 0 0;font-size:14px;color:var(--soft)}
+.code{border-radius:22px;padding:26px;background:var(--deep);color:#e9f3ed}
+.code label{display:block;font-weight:600;margin-bottom:10px}
+.code .row2{display:flex;gap:10px;flex-wrap:wrap}
+.code input{flex:1 1 200px;min-height:50px;border-radius:12px;border:1.5px solid #2c4a3a;background:#0f241a;color:#fff;font:600 16px "Readex Pro",monospace;padding:0 14px;direction:ltr;text-align:left;letter-spacing:.08em}
+.code input::placeholder{color:#6f8f7f}
+.code input:focus{outline:none;border-color:#7fd9a2}
+.code .btn{background:var(--am);color:#3a2600}
+.code p{margin:12px 0 0;font-size:14px;color:#a9c6b6}
 #msg{min-height:1.6em;font-weight:500}
-footer{background:light-dark(#0d3b22,#0a1a11);color:#d3efc0}
-footer .wrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);gap:28px}
-footer h2{color:#fff;font-size:28px}
-footer h3{color:#a7e08a;font-size:16px;margin:0 0 8px}
-footer p{margin:0 0 6px;font-size:15px}
-.contact{display:flex;flex-direction:column;gap:10px}
-.cbtn{display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 14px;border-radius:12px;text-decoration:none;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
-.cbtn:hover,.cbtn:focus-visible{background:rgba(255,255,255,.16);outline:none}
-.cbtn svg{width:26px;height:26px;flex:none;color:#a7e08a}
-.cbtn span{display:flex;flex-direction:column;line-height:1.3;font-size:14px;color:#d3efc0}
-.cbtn b{font-size:16px}
-footer .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap;font-weight:700;color:#fff}
-.small{font-size:13px;opacity:.8}
-.copy{border-top:1px solid rgba(255,255,255,.15);margin-top:28px;padding-top:16px;font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-@keyframes slide{0%{transform:translate(0,0);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translate(var(--dx),var(--dy));opacity:0}}
-.fly{animation:slide 3.6s ease-in-out infinite}
-@media(prefers-reduced-motion:reduce){.fly{animation:none;opacity:0}html{scroll-behavior:auto}}
-@media(max-width:900px){.plans{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:24px}.hero .wrap,.buy{grid-template-columns:minmax(0,1fr)}.fig{min-height:460px}.proj,.steps{grid-template-columns:minmax(0,1fr)}footer .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}footer .wrap>div:first-child{grid-column:1/-1}}
-@media(max-width:600px){.plans{grid-template-columns:minmax(0,1fr)}.feat{grid-template-columns:minmax(0,1fr)}.facts{grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);gap:8px}.facts b{font-size:17px}nav ul a{padding:8px 9px;font-size:14px}footer .wrap{grid-template-columns:minmax(0,1fr)}.fig{min-height:420px}}
+.faq{max-width:820px}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:20px 0;font:600 18px "Readex Pro";display:flex;justify-content:space-between;align-items:center;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";width:32px;height:32px;border-radius:10px;background:var(--pi);color:var(--gi);display:grid;place-items:center;font-size:20px;flex:none;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+summary:focus-visible{outline:3px solid var(--am);outline-offset:4px;border-radius:6px}
+details p{margin:0 0 20px;color:var(--soft);max-width:40em}
+.end{background:var(--deep);color:#e9f3ed;position:relative;overflow:hidden}
+.end::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#1f4a33 1.2px,transparent 1.2px);background-size:22px 22px;mask-image:radial-gradient(60% 80% at 80% 50%,#000,transparent 70%)}
+.end .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center}
+.end h2{color:#fff}
+.end p{color:#b8d4c3;margin:0}
+.cbtns{display:grid;gap:12px}
+.cb{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;text-decoration:none;background:#123b26;border:1px solid #23573b;transition:.2s}
+.cb:hover,.cb:focus-visible{background:#185033;outline:none}
+.cb .ci{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none}
+.cb .ci svg{width:24px;height:24px}
+.cb.wa .ci{background:var(--g);color:#fff}
+.cb.tg .ci{background:#2a9fd6;color:#fff}
+.cb span{display:flex;flex-direction:column;line-height:1.35;color:#b8d4c3;font-size:14px}
+.cb b{color:#fff;font-size:17px;direction:ltr;text-align:right;unicode-bidi:isolate}
+.cb .arr{margin-inline-start:auto;width:20px;height:20px;color:#7fd9a2}
+footer{background:#08200f;color:#8fb3a0;padding:22px max(5vw,16px);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+footer .brand{color:#e9f3ed;font-size:17px}
+footer .brand svg{width:28px;height:28px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.bx{transition:none}}
+@media(max-width:960px){.hero .wrap,.buy,.end .wrap{grid-template-columns:minmax(0,1fr)}.stage{order:2}.plans{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:26px}.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.bx.big{grid-column:span 2;grid-row:auto}.trust .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:minmax(0,1fr)}nav{display:none}}
+@media(max-width:600px){.plans,.bento{grid-template-columns:minmax(0,1fr)}.bx.big{grid-column:auto;flex-direction:column}.auto{flex-basis:200px;min-height:200px}.trust .wrap{grid-template-columns:minmax(0,1fr)}.f1{inset-inline-end:0}.f2{inset-inline-start:0}.float{padding:10px 12px}}
 </style>
 </head>
 <body>
-<nav aria-label="القائمة">
-  <div class="wrap">
-    <a class="logo" href="#top"><i></i>MMD</a>
-    <ul>
-      <li><a href="#how">كيف بيشتغل</a></li>
-      <li><a href="#features">المزايا</a></li>
-      <li><a href="#pricing">الباقات</a></li>
-      <li><a href="#buy">التفعيل</a></li>
-      <li><a href="#contact">تواصل</a></li>
-    </ul>
-  </div>
-</nav>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#138A45"/><circle cx="32" cy="24" r="9" fill="#fff"/><path d="M15 50c2-10 9-15 17-15s15 5 17 15" fill="#fff"/><circle cx="48" cy="46" r="10" fill="#F5A524" stroke="#138A45" stroke-width="3"/><path d="M43 46l4 4 6-7" stroke="#138A45" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="chk" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" opacity=".14"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M3.5 20.5l1.4-4.2A8.5 8.5 0 1 1 8 19.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .8a5 5 0 0 1-2.7-2.7l.8-1-1-2z" fill="currentColor"/></symbol>
+  <symbol id="tg" viewBox="0 0 24 24"><path d="M21 4.5 3 11.3l5.6 1.9 2 6.2 3.2-3.8 5 3.9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.6 13.2 18 7" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="arr" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
 
-<header class="hero band" id="top">
+<header>
   <div class="wrap">
-    <div>
-      <h1>مَعين: مساعدك بتنظيم العملاء. احفظ أرقام زبائنك بكبسة وحدة</h1>
-      <p class="lead">بتفتح المحادثات وبتنزل فيها، ومَعين بيلقط كل رقم مو محفوظ وبيحفظو بجهات الاتصال باسم بتختارو، بالعربي.</p>
-      <div class="btns">
-        <a class="btn main" href="#buy">طريقة التفعيل</a>
-        <a class="btn ghost" href="#how">طريقة التشغيل</a>
-      </div>
-      <p class="motto">لكل زبون أثر محفوظ<span>احفظ كل الأرقام دفعة وحدة، لتوصل حالتك لكل زبائنك.</span></p>
-    </div>
-    <div class="fig" aria-label="رسم لموبايل عم يلقط الأرقام من المحادثات ويحفظها"><svg id="phone" role="img"></svg></div>
+    <a class="brand" href="#top" aria-label="مَعين الرئيسية"><svg><use href="#logo"/></svg><span>مَعين<small>من MMD</small></span></a>
+    <nav aria-label="القائمة">
+      <ul>
+        <li><a href="#how">كيف بيشتغل</a></li>
+        <li><a href="#features">المزايا</a></li>
+        <li><a href="#pricing">الباقات</a></li>
+        <li><a href="#buy">التفعيل</a></li>
+        <li><a href="#faq">أسئلة</a></li>
+        <li><a href="#contact">تواصل</a></li>
+      </ul>
+    </nav>
+    <a class="btn main sm hcta" href="#pricing">اطلب الكود</a>
   </div>
 </header>
 
+<section class="hero band" id="top">
+  <div class="wrap">
+    <div>
+      <span class="pill"><b>جديد</b> تمرير تلقائي داخل بكل الباقات</span>
+      <h1>مَعين: مساعدك بتنظيم العملاء. <em>احفظ أرقام زبائنك بكبسة وحدة</em></h1>
+      <p class="lead">بتفتح المحادثات وبتنزل فيها، ومَعين بيلقط كل رقم مو محفوظ وبيحفظو بجهات الاتصال باسم بتختارو، بالعربي.</p>
+      <div class="btns">
+        <a class="btn main" href="#pricing">طريقة التفعيل</a>
+        <a class="btn line" href="#how">طريقة التشغيل</a>
+      </div>
+      <div class="motto">
+        <svg aria-hidden="true"><use href="#logo"/></svg>
+        <div><b>لكل زبون أثر محفوظ</b><span>احفظ كل الأرقام دفعة وحدة، لتوصل حالتك لكل زبائنك.</span></div>
+      </div>
+    </div>
+    <div class="stage" aria-label="موبايل عليه تطبيق مَعين عم يلقط الأرقام من المحادثات">
+      <div class="glow"></div>
+      <div class="phone">
+        <div class="scr">
+          <div class="isl"></div>
+          <div class="bar"><span>المحادثات</span><i id="cnt1">0</i></div>
+          <div class="list"><div class="feed" id="feed1"></div></div>
+        </div>
+      </div>
+      <div class="float f1"><span class="ic"><svg><use href="#chk"/></svg></span><span><b id="cnt2">0 رقم</b><small>انحفظوا بجهات الاتصال</small></span></div>
+      <div class="float f2"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 21c1-5 4.5-7 8-7s7 2 8 7" fill="currentColor"/></svg></span><span><b id="nm2">زبون 1</b><small>آخر رقم انحفظ</small></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="trust band" style="padding-block:26px" aria-label="ليش مَعين">
+  <div class="wrap">
+    <div class="tr"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" fill="none" stroke="currentColor" stroke-width="2"/></svg>الأرقام بتضل على موبايلك</div>
+    <div class="tr"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>واتساب وواتساب الأعمال</div>
+    <div class="tr"><svg viewBox="0 0 24 24"><path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/></svg>واجهة عربية كاملة</div>
+    <div class="tr"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 9V7a4 4 0 0 1 8 0v2" fill="none" stroke="currentColor" stroke-width="2"/></svg>تفعيل بكود، بدون بطاقة بنكية</div>
+  </div>
+</section>
+
 <section class="band" id="how">
   <div class="wrap">
+    <span class="kick">كيف بيشتغل</span>
     <h2>تلات خطوات وبتخلص</h2>
     <p class="sub">ما في نسخ ولصق رقم رقم. التطبيق بيقرا الأرقام الظاهرة عالشاشة وإنت عم تنزل بالمحادثات.</p>
     <div class="steps">
       <div class="step">
-        <svg viewBox="0 0 240 120" aria-hidden="true"><rect x="70" y="8" width="100" height="104" rx="14" fill="var(--deep)"/><rect x="80" y="22" width="80" height="12" rx="4" fill="#eaf7e1"/><rect x="80" y="42" width="80" height="12" rx="4" fill="#eaf7e1" opacity=".6"/><rect x="80" y="62" width="80" height="12" rx="4" fill="#eaf7e1" opacity=".6"/><circle cx="182" cy="34" r="18" fill="var(--coral)"/><text x="182" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#3a2600">ابدأ</text></svg>
+        <div class="mini"><svg viewBox="0 0 300 132" aria-hidden="true"><rect x="105" y="14" width="90" height="118" rx="16" fill="#0f1d17"/><rect x="118" y="36" width="64" height="9" rx="4" fill="#2c4a3a"/><rect x="118" y="54" width="52" height="9" rx="4" fill="#2c4a3a"/><rect x="118" y="72" width="58" height="9" rx="4" fill="#2c4a3a"/><rect x="128" y="96" width="44" height="22" rx="11" fill="#138A45"/><text x="150" y="111" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="Readex Pro">ابدأ</text><circle cx="196" cy="30" r="14" fill="#F5A524"/><path d="M190 30l4 4 7-8" stroke="#3a2600" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="no">1</div>
         <h3>اضغط وابدأ المسح</h3>
         <p>اسمح للتطبيق مرة وحدة، والباقي علينا.</p>
       </div>
       <div class="step">
-        <svg viewBox="0 0 240 120" aria-hidden="true"><rect x="70" y="8" width="100" height="104" rx="14" fill="var(--deep)"/><g fill="var(--coral)"><rect x="80" y="20" width="60" height="9" rx="3"/><rect x="80" y="44" width="70" height="9" rx="3"/><rect x="80" y="68" width="55" height="9" rx="3"/><rect x="80" y="92" width="65" height="9" rx="3"/></g><path d="M196 30v58m-10-12 10 12 10-12" stroke="var(--ink)" stroke-width="4" fill="none" stroke-linecap="round"/><rect x="18" y="40" width="40" height="28" rx="8" fill="#eaf7e1" stroke="var(--deep)" stroke-width="2"/><text x="38" y="59" text-anchor="middle" font-size="15" font-weight="700" fill="#0d6a34">87</text></svg>
+        <div class="mini"><svg viewBox="0 0 300 132" aria-hidden="true"><rect x="105" y="14" width="90" height="118" rx="16" fill="#0f1d17"/><g fill="#F5A524"><rect x="118" y="30" width="60" height="8" rx="4"/><rect x="118" y="50" width="48" height="8" rx="4"/><rect x="118" y="70" width="56" height="8" rx="4"/><rect x="118" y="90" width="44" height="8" rx="4"/></g><path d="M222 34v58m-10-12 10 12 10-12" stroke="#138A45" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="58" y="46" width="40" height="30" rx="9" fill="#fff" stroke="#138A45" stroke-width="2"/><text x="78" y="66" text-anchor="middle" font-size="14" font-weight="700" fill="#0d6a34" font-family="Readex Pro">87</text></svg></div>
+        <div class="no">2</div>
         <h3>انزل بالمحادثات</h3>
         <p>ومَعين بيبلّش يحفظ الأرقام عندك وإنت عم تنزل.</p>
       </div>
       <div class="step">
-        <svg viewBox="0 0 240 120" aria-hidden="true"><rect x="58" y="14" width="124" height="92" rx="12" fill="#eaf7e1" stroke="var(--deep)" stroke-width="2"/><circle cx="160" cy="38" r="10" fill="var(--deep)"/><rect x="72" y="32" width="68" height="10" rx="3" fill="var(--deep)"/><circle cx="160" cy="62" r="10" fill="var(--deep)"/><rect x="72" y="56" width="68" height="10" rx="3" fill="var(--deep)"/><circle cx="160" cy="86" r="10" fill="var(--deep)"/><rect x="72" y="80" width="68" height="10" rx="3" fill="var(--deep)"/></svg>
+        <div class="mini"><svg viewBox="0 0 300 132" aria-hidden="true"><rect x="90" y="18" width="120" height="100" rx="14" fill="#fff" stroke="#138A45" stroke-width="2"/><g fill="#138A45"><circle cx="190" cy="42" r="8"/><circle cx="190" cy="66" r="8"/><circle cx="190" cy="90" r="8"/></g><g fill="#cfe6d7"><rect x="108" y="38" width="70" height="8" rx="4"/><rect x="108" y="62" width="62" height="8" rx="4"/><rect x="108" y="86" width="66" height="8" rx="4"/></g></svg></div>
+        <div class="no">3</div>
         <h3>احفظ بالجملة</h3>
         <p>بتشيل الأرقام يلي ما بدك ياها، وبتحفظ الباقي بكبسة وحدة.</p>
       </div>
@@ -174,51 +269,43 @@ footer .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap;font-weight:70
   </div>
 </section>
 
-<section class="band lime" id="features">
+<section class="band" id="features" style="background:var(--card)">
   <div class="wrap">
+    <span class="kick">المزايا</span>
     <h2>معمول للتاجر العربي</h2>
-    <p class="sub">هي المزايا يلي عم نشتغل عليها بالنسخة الأولى.</p>
-    <div class="feat" id="featList"></div>
+    <p class="sub">كل شي بتحتاجو لتنظم أرقام زبائنك، بمكان واحد.</p>
+    <div class="bento">
+      <div class="bx big">
+        <div class="txt">
+          <span class="tag">داخل بكل الباقات</span>
+          <h3 style="font-size:26px">تمرير تلقائي</h3>
+          <p>مَعين بينزل بالمحادثات لحالو بسرعة طبيعية متل إيدك، وبيلقط كل الأرقام وإنت مرتاح. ما في داعي تقعد تنزل ساعة بإصبعك.</p>
+        </div>
+        <div class="auto" aria-hidden="true"><div class="feed" id="feed2"></div></div>
+      </div>
+      <div class="bx"><span class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16v10H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><h3>من المحادثات والغروبات</h3><p>بيلقط الأرقام من قائمة المحادثات ومن أعضاء الغروبات.</p></div>
+      <div class="bx"><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 15l3-3 3 3 2-2 3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><h3>من الصور كمان</h3><p>سكرين شوت أو صور كتير مع بعض، حتى بالوضع الليلي.</p></div>
+      <div class="bx"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h10M5 17h12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><h3>أسماء عربية بالجملة</h3><p>بادئة متل «زبون» أو اسم محلك، والترقيم تلقائي.</p></div>
+      <div class="bx"><span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16" fill="none" stroke="currentColor" stroke-width="2"/></svg></span><h3>فلترة حسب البلد</h3><p>احفظ أرقام سوريا بس، أو تركيا، أو كل البلدان.</p></div>
+      <div class="bx"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>تصدير ملفات</h3><p>Excel أو CSV أو VCF، لتنقلهن عالآيفون أو لزميلك.</p></div>
+    </div>
   </div>
 </section>
 
 <section class="band" id="pricing">
   <div class="wrap">
-    <h2>الباقات</h2>
-    <p class="sub">باقة وحدة فيها كل شي، والتمرير التلقائي داخل معها بدون أي إضافة. بتختار بس المدة.</p>
-    <div class="plans">
-      <article class="pl">
-        <h3>تجربة</h3>
-        <p class="pr"><b>مجاناً</b><span></span></p>
-        <ul><li>لحد 20 رقم</li><li>التمرير بإيدك</li><li>قراءة من المحادثات</li></ul>
-        <a class="btn ghost2" href="#buy">نزّل وجرّب</a>
-      </article>
-      <article class="pl">
-        <h3>شهر</h3>
-        <p class="pr"><b>4.99$</b><span>بالشهر</span></p>
-        <ul><li>كل المزايا</li><li>التمرير التلقائي</li><li>أرقام بلا حدود</li></ul>
-        <a class="btn main" href="https://wa.me/905524488532?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A7%D8%B4%D8%AA%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%B4%D9%87%D8%B1%20%D9%84%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D9%85%D9%8E%D8%B9%D9%8A%D9%86">اطلب الكود</a>
-      </article>
-      <article class="pl">
-        <h3>3 أشهر</h3>
-        <p class="pr"><b>12.99$</b><span>كل 3 أشهر</span></p>
-        <ul><li>كل المزايا</li><li>التمرير التلقائي</li><li>أرقام بلا حدود</li></ul>
-        <a class="btn main" href="https://wa.me/905524488532?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A7%D8%B4%D8%AA%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%82%D8%A9%203%20%D8%A3%D8%B4%D9%87%D8%B1%20%D9%84%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D9%85%D9%8E%D8%B9%D9%8A%D9%86">اطلب الكود</a>
-      </article>
-      <article class="pl best">
-        <span class="bd">الأوفر: أرخص من 4 أشهر</span><h3>سنة</h3>
-        <p class="pr"><b>19.99$</b><span>بالسنة</span></p>
-        <ul><li>كل المزايا</li><li>التمرير التلقائي</li><li>أرقام بلا حدود</li></ul>
-        <a class="btn main" href="https://wa.me/905524488532?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A8%D8%AF%D9%8A%20%D8%A7%D8%B4%D8%AA%D8%B1%D9%8A%20%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%B3%D9%86%D8%A9%20%D9%84%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D9%85%D9%8E%D8%B9%D9%8A%D9%86">اطلب الكود</a>
-      </article>
-    </div>
-    <p class="note">الدفع بكود تفعيل بطرق الدفع المحلية. اكبس «اطلب الكود» وبتنفتح محادثة واتساب معنا مباشرة.</p>
+    <span class="kick">الباقات</span>
+    <h2>باقة وحدة فيها كل شي</h2>
+    <p class="sub">التمرير التلقائي داخل مع كل الباقات بدون أي إضافة. بتختار بس المدة.</p>
+    <div class="plans" id="plans"></div>
+    <p class="note"><svg><use href="#chk"/></svg>الدفع بكود تفعيل بطرق الدفع المحلية. اكبس «اطلب الكود» وبتنفتح محادثة واتساب معنا مباشرة.</p>
   </div>
 </section>
 
-<section class="band lime" id="buy">
+<section class="band" id="buy" style="background:var(--card)">
   <div class="wrap buy">
     <div>
+      <span class="kick">التفعيل</span>
       <h2>التفعيل بكود، متل ما بتشحن رصيد</h2>
       <p class="sub">ما بتحتاج بطاقة بنكية ولا متجر Google Play.</p>
       <ol>
@@ -229,87 +316,96 @@ footer .num{direction:ltr;unicode-bidi:isolate;white-space:nowrap;font-weight:70
     </div>
     <form class="code" id="codeForm" novalidate>
       <label for="code">جرّب شكل كود التفعيل</label>
-      <div class="row">
-        <input id="code" name="code" inputmode="latin" autocomplete="off" maxlength="19" placeholder="MMD-XXXX-XXXX-XXXX" aria-describedby="msg">
+      <div class="row2">
+        <input id="code" name="code" autocomplete="off" maxlength="19" placeholder="MMD-XXXX-XXXX-XXXX" aria-describedby="msg">
         <button class="btn" type="submit">تحقّق</button>
       </div>
       <p id="msg" role="status"></p>
-      <p>هاد مثال بس على شكل الكود، والتفعيل الحقيقي بيصير من جوّا التطبيق لما ينطلق.</p>
+      <p>هاد مثال بس على شكل الكود، والتفعيل الحقيقي بيصير من جوّا التطبيق.</p>
     </form>
   </div>
 </section>
 
-<footer class="band" id="contact">
+<section class="band" id="faq">
+  <div class="wrap faq">
+    <span class="kick">أسئلة</span>
+    <h2>أسئلة بتتكرر</h2>
+    <details><summary>بيشتغل مع واتساب الأعمال؟</summary><p>إيه، بيشتغل مع الواتساب العادي وواتساب الأعمال.</p></details>
+    <details><summary>إذا الرقم محفوظ عندي، بينحفظ مرة تانية؟</summary><p>لأ، مَعين بيتجاهل الأرقام المحفوظة أصلاً، وما بيكرر أي رقم.</p></details>
+    <details><summary>وين بتروح أرقام زبائني؟</summary><p>الأرقام بتنحفظ بجهات الاتصال تبع موبايلك أو حساب جوجل تبعك، وما بنرفعها على أي سيرفر.</p></details>
+    <details><summary>بيشتغل عالآيفون؟</summary><p>التطبيق للأندرويد. آبل ما بتسمح لأي تطبيق يقرا شاشة الواتس، بس بتقدر تحفظ الأرقام بالأندرويد على حساب جوجل وبتنزل عالآيفون لحالها.</p></details>
+    <details><summary>كيف بشتري كود التفعيل؟</summary><p>اختار الباقة يلي بتناسبك واكبس «اطلب الكود»، وبتنفتح محادثة واتساب معنا لنكمل الدفع بالطريقة يلي بتريحك.</p></details>
+  </div>
+</section>
+
+<section class="end band" id="contact">
   <div class="wrap">
     <div>
-      <h2>خلّينا نحكي</h2>
-      <p>بدك تكون من أول المجرّبين لمَعين، أو تصير وكيل بيع أكواد؟ راسلنا.</p>
+      <h2>جاهز تحفظ زبائنك؟</h2>
+      <p>بدك تكون من أول المجرّبين لمَعين، أو تصير وكيل بيع أكواد؟ راسلنا مباشرة.</p>
     </div>
-    <div>
-      <h3>تواصل مباشر</h3>
-      <div class="contact">
-        <a class="cbtn wa" href="https://wa.me/905524488532"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.4 19z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>واتساب<b class="num">+90 552 448 85 32</b></span></a>
-        <a class="cbtn tg" href="https://t.me/MMD_IT_11"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 3 11l6 2 2 6 3-4 5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>تلغرام<b class="num">@MMD_IT_11</b></span></a>
-      </div>
-    </div>
-    <div>
-      <h3>الموقع</h3>
-      <p>سوريا</p>
-      <p class="small">منبيع داخل سوريا وخارجها بأكواد تفعيل.</p>
+    <div class="cbtns">
+      <a class="cb wa" href="https://wa.me/905524488532"><span class="ci"><svg><use href="#wa"/></svg></span><span>واتساب<b>+90 552 448 85 32</b></span><svg class="arr"><use href="#arr"/></svg></a>
+      <a class="cb tg" href="https://t.me/MMD_IT_11"><span class="ci"><svg><use href="#tg"/></svg></span><span>تلغرام<b>@MMD_IT_11</b></span><svg class="arr"><use href="#arr"/></svg></a>
     </div>
   </div>
-  <div class="wrap copy"><span>© <span id="yr">2026</span> MMD</span><span>مَعين مشروع مستقل وما إلو علاقة بأي تطبيق مراسلة.</span></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><svg><use href="#logo"/></svg><span>مَعين</span></a>
+    <span>مَعين مشروع مستقل من MMD، وما إلو علاقة بأي تطبيق مراسلة.</span>
+    <span>© <span id="yr">2026</span> MMD</span>
+  </div>
 </footer>
 
 <script>
 {
-const feats=[
-  ['قراءة من المحادثات','بيلقط الأرقام من قائمة المحادثات ومن الغروبات، بالتطبيق العادي ونسخة الأعمال.','M8 10h24v16H16l-8 6z'],
-  ['من الصور كمان','بتعطيه سكرين شوت أو صور كتير مع بعض، حتى بالوضع الليلي.','M6 9h28v22H6zM12 25l6-7 5 5 4-4 7 6'],
-  ['أسماء عربية بالجملة','بتختار بادئة متل «زبون» أو اسم محلك، وبيرقّم الباقي لحالو.','M10 12h20M10 20h14M10 28h18'],
-  ['فلترة حسب البلد','بتحفظ أرقام سوريا بس، أو تركيا، أو كل البلدان.','M20 6a14 14 0 1 0 .1 0zM6 20h28M20 6c-6 8-6 20 0 28M20 6c6 8 6 20 0 28'],
-  ['تمرير تلقائي','مَعين بينزل بالمحادثات لحالو وبيلقط الأرقام، وإنت مرتاح.','M20 8v24m-8-8 8 8 8-8'],
-  ['تصدير ملفات','Excel أو CSV أو VCF لتنقلهن عالآيفون أو تبعتهن لزميلك.','M20 6v18m-7-7 7 7 7-7M8 30h24']
-];
-const fl=document.getElementById('featList');
-fl.innerHTML=feats.map(f=>`<div><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="var(--deep)"/><path d="${f[2]}" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><h3>${f[0]}</h3><p>${f[1]}</p></span></div>`).join('');
+const names=['أبو سامر','محل النور','أم خالد','مكتبة الأمل','أبو أحمد','صيدلية الشفاء'];
+const cols=['#7fd9a2','#f5c46b','#9cc7f0','#e8a3b7','#c5b3f0','#a8e0d0'];
+const pre=['+963 9','+90 5','+966 5'];
+let seed=7;const rnd=m=>{seed=seed*16807%2147483647;return seed%m};
+const num=()=>{const pf=pre[rnd(10)<6?0:rnd(10)<8?1:2];const d=()=>String(rnd(10));
+ return pf==='+963 9'?`+963 9${d()}${d()} ${d()}${d()}${d()} ${d()}${d()}${d()}`:pf==='+90 5'?`+90 5${d()}${d()} ${d()}${d()}${d()} ${d()}${d()} ${d()}${d()}`:`+966 5${d()} ${d()}${d()}${d()} ${d()}${d()}${d()}${d()}`};
+let ci=0;
+const makeRow=()=>{const el=document.createElement('div');el.className='row';const unsaved=rnd(10)<7;const c=cols[ci++%cols.length];
+ if(unsaved){el.dataset.u='1';el.innerHTML=`<span class="av" style="background:${c}">#</span><div><b class="n">${num()}</b><span>رقم مو محفوظ</span></div><span class="tick">+</span>`}
+ else{const nm=names[rnd(names.length)];el.innerHTML=`<span class="av" style="background:${c}">${nm.slice(0,1)}</span><div><b>${nm}</b><span>محفوظ</span></div>`}
+ return el};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let saved=0;const c1=document.getElementById('cnt1'),c2=document.getElementById('cnt2'),nm2=document.getElementById('nm2');
+const save=(row,count)=>{row.dataset.u='';const k=count?++saved:0;const label=count?`زبون ${k}`:'زبون جديد';
+ row.querySelector('b').textContent=label;row.querySelector('b').className='sv';row.querySelector(':scope > div > span').textContent='انحفظ ✓';
+ const t=row.querySelector('.tick');if(t){t.className='ok';t.textContent='✓'}row.classList.add('flash');
+ if(count){c1.textContent=saved;c2.textContent=saved+' رقم';nm2.textContent=label}};
+const runFeed=(feed,box,count,speed)=>{for(let i=0;i<14;i++)feed.appendChild(makeRow());
+ if(reduce){[...feed.children].slice(0,4).forEach(r=>{if(r.dataset.u)save(r,count)});return}
+ let off=0,last=performance.now();
+ const step=now=>{const dt=Math.min(64,now-last);last=now;off+=speed*dt/1000;const first=feed.firstElementChild;const h=first.offsetHeight||60;
+  if(off>=h){off-=h;feed.removeChild(first);feed.appendChild(makeRow())}
+  feed.style.transform=`translateY(${-off}px)`;
+  const top=box.getBoundingClientRect().top+90;
+  for(const r of feed.children){if(r.dataset.u==='1'&&r.getBoundingClientRect().top<top)save(r,count)}
+  requestAnimationFrame(step)};
+ requestAnimationFrame(step)};
+runFeed(document.getElementById('feed1'),document.querySelector('.list'),true,38);
+runFeed(document.getElementById('feed2'),document.querySelector('.auto'),false,44);
 
-const rows=[['+963 944 976 443',1],['أبو سامر',0],['+90 534 712 53 62',1],['محل النور',0],['+963 998 196 003',1],['+963 940 731 265',1],['أم خالد',0],['+966 58 234 0946',1]];
-const s=document.getElementById('phone');
-const draw=()=>{
-  const W=s.clientWidth,H=s.clientHeight;if(!W||!H)return;
-  const narrow=W<460;
-  const pw=Math.min(narrow?W*0.62:W*0.5,250),ph=Math.min(H-40,pw*2.05);
-  const px=narrow?(W-pw)*0.62:W*0.56-pw/2,py=(H-ph)/2;
-  const rh=(ph-110)/rows.length;
-  const cw=narrow?Math.min(W*0.42,170):Math.min(W*0.36,190),cx=narrow?8:Math.max(8,px-cw-24),cy=py+ph*0.5;
-  let o=`<defs><linearGradient id="sc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b2a24"/><stop offset="1" stop-color="#061a16"/></linearGradient></defs>`;
-  o+=`<ellipse cx="${px+pw/2}" cy="${py+ph+14}" rx="${pw*0.55}" ry="12" fill="#0d3b22"/>`;
-  o+=`<rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="30" fill="#0d1f1b" stroke="#2e5a50" stroke-width="2"/>`;
-  o+=`<rect x="${px+9}" y="${py+9}" width="${pw-18}" height="${ph-18}" rx="22" fill="url(#sc)"/>`;
-  o+=`<rect x="${px+pw/2-26}" y="${py+16}" width="52" height="8" rx="4" fill="#0d1f1b"/>`;
-  o+=`<text x="${px+pw-24}" y="${py+56}" text-anchor="end" font-size="16" font-weight="700" fill="#eaf7e1">المحادثات</text>`;
-  rows.forEach((r,i)=>{
-    const y=py+76+i*rh;
-    o+=`<circle cx="${px+pw-34}" cy="${y+rh/2}" r="${Math.min(13,rh/2-4)}" fill="${r[1]?'#2f4a43':'#3c6b5f'}"/>`;
-    o+=`<text x="${px+pw-54}" y="${y+rh/2+5}" text-anchor="end" font-size="${narrow?12:13.5}" font-weight="500" fill="${r[1]?'#f5a524':'#cfe3da'}">${r[0]}</text>`;
-    o+=`<line x1="${px+22}" x2="${px+pw-22}" y1="${y+rh}" y2="${y+rh}" stroke="#1d3a33"/>`;
-  });
-  o+=`<g><rect x="${px-14}" y="${py+ph*0.3}" width="62" height="52" rx="14" fill="#eaf7e1" stroke="#0d6a34" stroke-width="2"/><text x="${px+17}" y="${py+ph*0.3+24}" text-anchor="middle" font-size="18" font-weight="800" fill="#0d6a34" font-family="Inter Tight,sans-serif">5</text><text x="${px+17}" y="${py+ph*0.3+42}" text-anchor="middle" font-size="12" fill="#0d6a34">رقم</text></g>`;
-  o+=`<rect x="${cx+6}" y="${cy+8}" width="${cw}" height="168" rx="16" fill="#0d3b22"/>`;
-  o+=`<rect x="${cx}" y="${cy}" width="${cw}" height="168" rx="16" fill="#ffffff" stroke="#e6f5c8" stroke-width="2"/>`;
-  o+=`<text x="${cx+cw-14}" y="${cy+28}" text-anchor="end" font-size="14" font-weight="700" fill="#0d6a34">جهات الاتصال</text>`;
-  ['زبون ١','زبون ٢','زبون ٣','زبون ٤'].forEach((n,i)=>{const y=cy+50+i*28;o+=`<circle cx="${cx+cw-24}" cy="${y}" r="9" fill="#0d6a34"/><text x="${cx+cw-40}" y="${y+5}" text-anchor="end" font-size="13" fill="#10201c">${n}</text><path d="M${cx+16} ${y}l4 4 8-8" stroke="#2e9a6a" stroke-width="2.4" fill="none" stroke-linecap="round"/>`});
-  [0,2,4].forEach((ri,k)=>{const y=py+76+ri*rh+rh/2;const sx=px+46;const dx=(cx+cw/2)-sx,dy=(cy-16)-y;o+=`<g class="fly" style="--dx:${dx}px;--dy:${dy}px;animation-delay:${k*1.2}s"><rect x="${sx-34}" y="${y-11}" width="68" height="22" rx="11" fill="#f5a524"/><text x="${sx}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="700" fill="#3a2600">+ حفظ</text></g>`});
-  s.innerHTML=o;
-};
-const ro=new ResizeObserver(draw);ro.observe(s);draw();
+const wa=t=>'https://wa.me/905524488532?text='+encodeURIComponent('مرحبا، بدي اشتري باقة '+t+' لتطبيق مَعين');
+const plans=[
+  {n:'تجربة',p:'مجاناً',per:'',f:['لحد 20 رقم','التمرير بإيدك','قراءة من المحادثات'],b:'',btn:'نزّل وجرّب',href:'#buy',cls:'line'},
+  {n:'شهر',p:'4.99$',per:'بالشهر',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('الشهر'),cls:'main'},
+  {n:'3 أشهر',p:'12.99$',per:'كل 3 أشهر',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('3 أشهر'),cls:'main'},
+  {n:'سنة',p:'19.99$',per:'بالسنة',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'الأوفر: أرخص من 4 أشهر',btn:'اطلب الكود',href:wa('السنة'),cls:'main'}
+];
+document.getElementById('plans').innerHTML=plans.map(x=>`<article class="plan${x.b?' best':''}">${x.b?`<span class="bd">${x.b}</span>`:''}<h3>${x.n}</h3><p class="price"><b>${x.p}</b><span>${x.per}</span></p><ul>${x.f.map(f=>`<li><svg><use href="#chk"/></svg>${f}</li>`).join('')}</ul><a class="btn ${x.cls}" href="${x.href}">${x.btn}</a></article>`).join('');
 
 const f=document.getElementById('codeForm'),inp=document.getElementById('code'),msg=document.getElementById('msg');
 inp.addEventListener('input',()=>{let v=inp.value.toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.startsWith('MMD'))v=v.slice(3);v=v.slice(0,12);const parts=v.match(/.{1,4}/g)||[];inp.value=parts.length?'MMD-'+parts.join('-'):'';msg.textContent='';});
-f.addEventListener('submit',e=>{e.preventDefault();const ok=/^MMD-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(inp.value);msg.textContent=ok?'شكل الكود صحيح. التفعيل الفعلي بيصير من جوّا التطبيق.':'الكود لازم يكون بهالشكل: MMD- وبعدها 12 حرف ورقم.';msg.style.color=ok?'#2e9a6a':'#c2412d';});
+f.addEventListener('submit',e=>{e.preventDefault();const ok=/^MMD-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(inp.value);msg.textContent=ok?'شكل الكود صحيح. التفعيل الفعلي بيصير من جوّا التطبيق.':'الكود لازم يكون بهالشكل: MMD- وبعدها 12 حرف ورقم.';msg.style.color=ok?'#7fd9a2':'#ffb4a3';});
 document.getElementById('yr').textContent=new Date().getFullYear();
-const links=[...document.querySelectorAll('nav ul a')];
+
+const links=[...document.querySelectorAll('nav a')];
 const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
 const mark=()=>{const y=window.scrollY+window.innerHeight*0.35;let cur=null;for(const sec of secs){if(sec.offsetTop<=y)cur=sec;}
 if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4)cur=secs[secs.length-1];
