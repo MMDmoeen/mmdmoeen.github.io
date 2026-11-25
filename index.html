@@ -207,7 +207,7 @@ footer .brand svg{width:28px;height:28px}
 <section class="hero band" id="top">
   <div class="wrap">
     <div>
-      <span class="pill"><b>جديد</b> تمرير تلقائي داخل بكل الباقات</span>
+      <span class="pill"><b>جديد</b> الحفظ التلقائي: الزبون بينحفظ أول ما يحكيك</span>
       <h1>مَعين: مساعدك بتنظيم العملاء. <em>احفظ أرقام زبائنك بكبسة وحدة</em></h1>
       <p class="lead">بتفتح المحادثات وبتنزل فيها، ومَعين بيلقط كل رقم مو محفوظ وبيحفظو بجهات الاتصال باسم بتختارو، بالعربي.</p>
       <div class="btns">
@@ -397,9 +397,9 @@ runFeed(document.getElementById('feed2'),document.querySelector('.auto'),false,4
 
 const wa=t=>'https://wa.me/905524488532?text='+encodeURIComponent('مرحبا، بدي اشتري باقة '+t+' لتطبيق مَعين');
 const plans=[
-  {n:'شهر',p:'4.99$',per:'بالشهر',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('الشهر'),cls:'main'},
-  {n:'3 أشهر',p:'12.99$',per:'كل 3 أشهر',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('3 أشهر'),cls:'main'},
-  {n:'سنة',p:'19.99$',per:'بالسنة',f:['كل المزايا','التمرير التلقائي','أرقام بلا حدود'],b:'الأوفر: أرخص من 4 أشهر',btn:'اطلب الكود',href:wa('السنة'),cls:'main'}
+  {n:'شهر',p:'4.99$',per:'بالشهر',f:['الحفظ التلقائي للزباين الجداد','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('الشهر'),cls:'main'},
+  {n:'3 أشهر',p:'12.99$',per:'كل 3 أشهر',f:['الحفظ التلقائي للزباين الجداد','التمرير التلقائي','أرقام بلا حدود'],b:'',btn:'اطلب الكود',href:wa('3 أشهر'),cls:'main'},
+  {n:'سنة',p:'19.99$',per:'بالسنة',f:['الحفظ التلقائي للزباين الجداد','التمرير التلقائي','أرقام بلا حدود'],b:'الأوفر: أرخص من 4 أشهر',btn:'اطلب الكود',href:wa('السنة'),cls:'main'}
 ];
 document.getElementById('plans').innerHTML=plans.map(x=>`<article class="plan${x.b?' best':''}">${x.b?`<span class="bd">${x.b}</span>`:''}<h3>${x.n}</h3><p class="price"><b>${x.p}</b><span>${x.per}</span></p><ul>${x.f.map(f=>`<li><svg><use href="#chk"/></svg>${f}</li>`).join('')}</ul><a class="btn ${x.cls}" href="${x.href}">${x.btn}</a></article>`).join('');
 
